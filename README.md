@@ -3,4 +3,4 @@
 
 ### Índice
 
-· [Primeros pasos]()
+· [Apuntes]()
