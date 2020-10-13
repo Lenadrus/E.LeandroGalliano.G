@@ -1,7 +1,0 @@
-# Apuntes
- 
-
-### 
-Git
-cmd | def 
---- | ---
