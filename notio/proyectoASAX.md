@@ -4,21 +4,21 @@
 
 * [Enunciado](#enun)
 
-* Acerca de las entidades
+	* Acerca de las entidades
 
-	* [Director ejecutivo](#x)
-	* [Gestor](#g)
-	* [Supervisor](#z)
-	* [Pedidos](#p)
-	* [Operarios](#o)
+		* [Director ejecutivo](#x)
+		* [Gestor](#g)
+		* [Supervisor](#z)
+		* [Pedidos](#p)
+		* [Operarios](#o)
 
-		* [carpintero y especialista en metalurgia](#cm)
+			* [carpintero y especialista en metalurgia](#cm)
 
-* Acerca de los atributos
+	* Acerca de los atributos
 
-	* [Ocupación](#ocu)
-	* [Horario](#hor)
-	* [Código de identificación](#cid)
+		* [Ocupación](#ocu)
+		* [Horario](#hor)
+		* [Código de identificación](#cid)
 
 
 El <a name="enun">proyecto</a> sobre la base de datos consiste en una fábrica de alas para aviones.
