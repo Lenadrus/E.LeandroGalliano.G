@@ -56,7 +56,7 @@ El atributo "aprobación" para la entidad "supervisor", indica si el ala recién
 al viento y los cambios de fuerza contra la gravedad, que se realizan en una cámara especial situada en una de las áreas
 de la fábrica.
 
-`Los` <a name="cid">códigos de identificación></a> ```consisten en 3 dígitos, de los cuales uno es caractérico en mayúsculas 
+`Los` <a name="cid">códigos de identificación</a> ```consisten en 3 dígitos, de los cuales uno es caractérico en mayúsculas 
 y los dos restantes son numéricos; la estructura de los puestos laborales es jerárquica, por lo tanto, el carácter identifíca 
 la ocupación o puesto laboral: código de identificación={"Q para Operario, X para director ejecutivo, Z para supervisor,
 y G para gestor"}. Por ejemplo: X01 (director ejecuivo; sólo hay 1), Z01 (supervisor; sólo hay 1), G01 (gestor; sólo hay 1), 
