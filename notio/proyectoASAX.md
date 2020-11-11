@@ -4,7 +4,7 @@
 
 * [Enunciado](#enun)
 
-**__Navegar por el enunciado:_**
+____Navegar por el enunciado:___
 
 	* Acerca de las entidades
 
