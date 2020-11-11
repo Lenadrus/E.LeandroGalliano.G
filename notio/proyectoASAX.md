@@ -4,7 +4,7 @@
 
 * [Enunciado](#enun)
 
-`Navegar por el enunciado: `
+**__Navegar por el enunciado:_**
 
 	* Acerca de las entidades
 
@@ -25,7 +25,7 @@
 
 El <a name="enun">proyecto</a> sobre la base de datos consiste en una fábrica de alas para aviones.
 
-La fábrica dispone de un `director ejecutivo`, `un gestor`, `operarios **según categoría (ocupación)**` en función de la 
+La fábrica dispone de un `director ejecutivo`, `un gestor`, `operarios según categoría (ocupación)` en función de la 
 complejidad de la operación, vehículos, máquinaria para todas las actividades de construcción y un supervisor.
 
 De los <a name="o">_operarios_</a> se necesita guardar; codigo de identificación, nombre, <a name="ocu">ocupación</a> (la que puede expresarse 
@@ -50,8 +50,7 @@ De los <a name="p">_pedidos_</a> se necesita guardar, el código del pedido y ti
 El <a name="g">_gestor_</a> ordena los pedidos según coste en tiempo de construcción, y calcúla el presupuesto para cada unidad.
 Del _gestor_ se necesita guardar código de identificación y nombre.
 
-El <a name="z">_supervisor_</a>, quien es _ingeniero aeronáutico_, se encarga de vigilar que cada área de la fábrica realice los componentes
-a las medidas establecidas o necesarias para cada tipo de pedido.
+El <a name="z">_supervisor_</a>, quien es _ingeniero aeronáutico_, se encarga de vigilar que cada área de la fábrica realice los componentes a las medidas establecidas o necesarias para cada tipo de pedido.
 
 Del supervisor se necesita guardar, el código de identificación, nombre y aprobación.
 El atributo "aprobación" para la entidad "supervisor", indica si el ala recién fabricada ha pasado el test de resistencia
@@ -61,5 +60,4 @@ de la fábrica.
 `Los` <a name="cid">códigos de identificación</a> ```consisten en 3 dígitos, de los cuales uno es caractérico en mayúsculas 
 y los dos restantes son numéricos; la estructura de los puestos laborales es jerárquica, por lo tanto, el carácter identifíca 
 la ocupación o puesto laboral: código de identificación={"Q para Operario, X para director ejecutivo, Z para supervisor,
-y G para gestor"}. Por ejemplo: X01 (director ejecuivo; sólo hay 1), Z01 (supervisor; sólo hay 1), G01 (gestor; sólo hay 1), 
-Q01, Q02, Q03 (puede ser operario informático, de limpieza, transporte, etc).```
+y G para gestor"}. Por ejemplo: X01 (director ejecutivo; sólo hay 1), Z01 (supervisor; sólo hay 1), G01 (gestor; sólo hay 1), Q01, Q02, Q03 (puede ser operario informático, de limpieza, transporte, etc).```
