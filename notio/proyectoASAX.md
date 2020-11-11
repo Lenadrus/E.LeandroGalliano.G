@@ -3,7 +3,7 @@
 ## Índice (en anclas)
 
 * [Enunciado](#enun)
-
+`Navegar por el enunciado: `
 	* Acerca de las entidades
 
 		* [Director ejecutivo](#x)
