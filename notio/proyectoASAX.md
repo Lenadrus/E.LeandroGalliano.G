@@ -47,7 +47,7 @@ De cada operario se necesita guardar la <a name="hor">hora de entrada y de salid
 
 De los <a name="p">**_pedidos_**</a> se necesita guardar, el código del pedido y tipo de ala a fabricar.
 
-El <a name="g">_**gestor_**</a> ordena los pedidos según coste en tiempo de construcción, y calcúla el presupuesto para cada unidad.
+El <a name="g">**_gestor_**</a> ordena los pedidos según coste en tiempo de construcción, y calcúla el presupuesto para cada unidad.
 Del **_gestor_** se necesita guardar código de identificación y nombre.
 
 El <a name="z">**_supervisor_**</a>, quien es _ingeniero aeronáutico_, se encarga de vigilar que cada área de la fábrica realice los componentes a las medidas establecidas o necesarias para cada tipo de pedido.
