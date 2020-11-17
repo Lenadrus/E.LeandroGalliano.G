@@ -36,7 +36,7 @@ La fábrica necesitará como máximo un administrador informático para el mante
 (y otros dispositivos informáticos existentes), y de la seguridad (cámaras y sensores de movimiento y temperatura) de cada
 área de la fábrica.
 
-Como la <a name="cm">estructura básica de un ala</a> está echa de madera, se necesitarán carpinteros.
+Como la <a name="cm">estructura básica de un ala</a> está echa de madera, se necesitarán **_carpinteros_**.
 También se necesitarán especialistas en metalurgia para la estructura de aluminio u otras aleaciones del ala, y
 un mecánico. De éstos operarios se necesita guardar el diseño del pedido para el que se está trabajando.
 
