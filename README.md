@@ -4,4 +4,4 @@
 
 * [Enunciado del proyecto](https://github.com/Lundrvs/E.LeandroGalliano.G/blob/main/notio/proyectoASAX.md)
 
-* [Scripts de SQL para SSSMS]()
+* [Scripts de SQL para SSSMS](https://github.com/Lenadrus/E.LeandroGalliano.G/blob/main/scriptsSQL/README.md)
