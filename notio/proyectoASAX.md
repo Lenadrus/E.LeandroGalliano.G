@@ -2,7 +2,7 @@
 
 ## Índice
 
-* [Enunciado](#enun)
+* [Enunciado](#bout)
 
 * [Esquema relacional]()
 
@@ -12,6 +12,7 @@
 
 * [Código SQL]()
 
+<a name="bout"></a>
 **Base de datos para empresa de instalación y mantenimiento de paneles solares**
 
 Se necesita una base de datos para la instalación y mantenimiento de paneles solares.
@@ -29,3 +30,12 @@ Los paneles solares térmicos son conocidos también como colectores solares. É
 
 La instalación de paneles fotovoltaicos requiere de una batería, un regulador y un inversor. Éste tipo de instalación eléctrica será aislada.
 La batería puede ser de ion-litio (mantenimiento caro) o de plomo-ácido (mantenimiento barato).
+
+<a name="schema">
+</a>
+
+<a name="graph">
+</a>
+
+<a name="">
+</a>
