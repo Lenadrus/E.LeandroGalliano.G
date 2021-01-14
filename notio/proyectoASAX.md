@@ -20,4 +20,4 @@ Cuantos más paneles térmicos haya, más capacidad debe tener el acumulador y m
 Los paneles solares térmicos son conocidos también como colectores solares. Éstos paneles pueden ser instalados en serie o en paralelo.
 
 La instalación de paneles fotovoltaicos requiere de una batería, un regulador y un inversor. Éste tipo de instalación eléctrica será aislada.
-La batería puede ser de ion-litio (<dfn title="En relación al precio económico.">mantenimiento caro</dfn>) o de plomo-ácido (mantenimiento barato).
+La batería puede ser de ion-litio (mantenimiento caro) o de plomo-ácido (mantenimiento barato).
