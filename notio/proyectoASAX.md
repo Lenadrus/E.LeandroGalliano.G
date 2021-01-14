@@ -28,15 +28,23 @@ Cuantos más paneles térmicos haya, más capacidad debe tener el acumulador y m
 Los paneles solares térmicos son conocidos también como colectores solares. Éstos paneles pueden ser instalados en serie o en paralelo.
 
 De los paneles se necesita conocer cómo van instalados (serie o paralelo), su cantidad y el precio unitario.
+
 De la caldera se necesita conocer el tipo de caldera y el precio (determinado por el tipo).
+
 Del acumulador se necesita conocer su capacidad y el precio (determinado por la capacidad).
+
 De la tubería se necesita conocer su longitud total para el circuito hidráulico y el precio (determinado por la longitud).
 
+
+
 La instalación de paneles fotovoltaicos requiere de una batería, un regulador y un inversor. Éste tipo de instalación eléctrica será aislada.
+
 La batería puede ser de ion-litio (mantenimiento caro) o de plomo-ácido (mantenimiento barato).
 
 De los paneles fotovoltaicos se necesita conocer cantidad y precio unitario.
+
 De la batería se necesita conocer el tipo de batería (plomo-ácido u ion-litio) y el precio (determinado por el tipo).
+
 Del regulador y del inversor sólo se necesita conocer el precio.
 
 <a name="schema">
