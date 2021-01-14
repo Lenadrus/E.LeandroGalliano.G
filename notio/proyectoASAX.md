@@ -16,7 +16,6 @@
 **Base de datos para empresa de instalación y mantenimiento de paneles solares**
 
 Se necesita una base de datos para la instalación y mantenimiento de paneles solares.
-
 Para tal propósito, sólo se cuenta con un instalador.
 Se instalan diferetes paneles en función de la demanda del cliente, si el cliente requiere abastecimiento eléctrico, se necesitan paneles fotovoltaicos. Si el cliente requiere calefacción, se requiere paneles térmicos.
 
