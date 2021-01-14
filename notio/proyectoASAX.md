@@ -4,12 +4,6 @@
 
 * [Enunciado](#enun)
 
-___Navegar por el enunciado:___
-
- * [Paneles solares térmicos](#termico)
-
- * [Paneles solares fotovoltaicos](#fotovoltaico)
-
 **Base de datos para empresa de instalación y mantenimiento de paneles solares**
 
 Se necesita una base de datos para la instalación y mantenimiento de paneles solares.
