@@ -27,7 +27,7 @@ Del panel solar térmico, es necesario guardar la longitud total de las tubería
 y la cantidad a instalar. La cantidad de colectores solares sólo determina la longitud del circuito hidráulico, siendo mayor
 cuanto más colectores haya.
 
-Del acumulador [al que abastece](expl/instalacionTermicaPaneles.md#acumu), es necesario guardar el código, marca y modelo, así como también los de la
+Del acumulador [al que abastece](expl/instalacionTermicaPaneles.md/#acumu), es necesario guardar el código, marca y modelo, así como también los de la
 caldera (la caldera se clasifica por tipo).
 
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
