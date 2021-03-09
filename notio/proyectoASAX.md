@@ -28,7 +28,7 @@ y la cantidad a instalar. La cantidad de colectores solares sólo determina la l
 cuanto más colectores haya.
 
 Del acumulador [al que abastece](expl/instalacionTermicaPaneles.md/#acumu), es necesario guardar el código, marca y modelo, así como también los de la
-caldera (la caldera se clasifica por tipo).
+caldera (y además, la caldera se clasifica por tipo).
 
 Un acumulador es abastecido por el circuito hidráulico de un colector solar. Es decir, un colector solar sólamente
 abastece a un acumulador, porque sólo hay un acumulador por instalación térmica. Generalmente se trata de la unidad
