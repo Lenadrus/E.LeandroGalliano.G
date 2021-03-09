@@ -12,7 +12,7 @@ invernadero en el interior del panel. De ésta manera, el agua que pasa a travé
 influenciada por la temperatura existente en cada momento de su recorrido.
 
 
-<a name="acumu"> **Por qué se dice que el colector solar abastece al acumulador: ** </a>
+** Por qué se dice que el colector solar abastece al acumulador: **
 
 El agua al regresar, debe pasar por un depósito de agua (que inicialmente se encuentra fría) conocido como "acumulador".
 El acumulador consiste en un depósito de agua (generalmente cilíndrico) con cuatro orificios. Dos orificios de entrada en un 
