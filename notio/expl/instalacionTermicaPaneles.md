@@ -11,6 +11,9 @@ Encima de éstos tubos, se encuentra una pantalla transparente de plástico cuya
 invernadero en el interior del panel. De ésta manera, el agua que pasa a través del tubo, en su ruta, es 
 influenciada por la temperatura existente en cada momento de su recorrido.
 
+
+<a name="acumu">**Por qué se dice que el colector solar abastece al acumulador: **</a>
+
 El agua al regresar, debe pasar por un depósito de agua (que inicialmente se encuentra fría) conocido como "acumulador".
 El acumulador consiste en un depósito de agua (generalmente cilíndrico) con cuatro orificios. Dos orificios de entrada en un 
 lado del depósito, y dos orificios de salida en el lado base del depósito.
