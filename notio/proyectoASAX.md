@@ -23,11 +23,11 @@ y otro para el abastecimiento térmico (conocido como [panel solar térmico o co
 El panel solar térmico está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
-De los panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el precio unitario,
+Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros)
 y el codigo que lo identifica.
 
 Del acumulador al que abastece, es necesario guardar el código, marca y modelo, así como también los de la
-caldera.
+caldera (la caldera se clasifica por tipo).
 
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
