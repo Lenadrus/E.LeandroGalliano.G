@@ -25,7 +25,7 @@ El panel solar térmico está compuesto por unas tuberías (las que conforman el
 De los paneles solares térmicos, es necesario guardar la longitud total de las tuberías (las que se miden en metros),
 la capacidad del acumulador (en Litros de agua), y el tipo de [caldera](#caldera) (de biomasa, a gas o eléctrica).
 
-Información detallada: *Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
+Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
 
