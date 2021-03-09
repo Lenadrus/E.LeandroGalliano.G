@@ -15,37 +15,43 @@
 <a name="bout"></a>
 **Base de datos para empresa de instalación y mantenimiento de paneles solares**
 
-Se necesita una base de datos para la instalación y mantenimiento de paneles solares.
-Para tal propósito, sólo se cuenta con un instalador.
-Se instalan diferetes paneles en función de la demanda del cliente, si el cliente requiere abastecimiento eléctrico, se necesitan paneles fotovoltaicos. Si el cliente requiere calefacción, se requiere paneles térmicos.
+Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
 
-Sólamente se puede realizar una instalación por cliente.
-El cliente puede instalar más de un panel y de diferentes tipos.
+Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico](#diferencias)), 
+y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#diferencias)).
 
-La instalación de paneles térmicos está compuesta por un "kit térmico" que consiste en una caldera, un acumulador, las tuberías para el circuito hidráulico y los paneles.
-Existen diferentes tipos de calderas; calderas a gas (mantenimiento bajo), a biomasa (mantenimiento caro) ó eléctricas (mantenimiento caro).
-Cuantos más paneles térmicos haya, más capacidad debe tener el acumulador y más longitud la tubería.
-Los paneles solares térmicos son conocidos también como colectores solares. Éstos paneles pueden ser instalados en serie o en paralelo.
+El panel solar térmico está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
+(el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
+De los paneles solares térmicos, es necesario guardar la longitud total de las tuberías (las que se miden en metros),
+la capacidad del acumulador (en Litros de agua), y el tipo de [caldera](#caldera) (de biomasa, a gas o eléctrica).
 
-De los paneles se necesita conocer cómo van instalados (serie o paralelo), su cantidad y el precio unitario.
-
-De la caldera se necesita conocer el tipo de caldera y el precio (determinado por el tipo).
-
-Del acumulador se necesita conocer su capacidad y el precio (determinado por la capacidad).
-
-De la tubería se necesita conocer su longitud total para el circuito hidráulico y el precio (determinado por la longitud).
+Información detallada: *Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
 
-La instalación de paneles fotovoltaicos requiere de una batería, un regulador y un inversor. Éste tipo de instalación eléctrica será aislada.
-
-La batería puede ser de ion-litio (mantenimiento caro) o de plomo-ácido (mantenimiento barato).
+El panel solar fotovoltaico está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
+por panel fotovoltaico.
+Del panel fotovoltaico se requiere guardar la potencia y su precio unitario, así como de la batería
+el tipo, precio y el código que la identifica.
 
 De los paneles fotovoltaicos se necesita conocer cantidad y precio unitario.
 
 De la batería se necesita conocer el tipo de batería (plomo-ácido u ion-litio) y el precio (determinado por el tipo).
 
-Del regulador y del inversor sólo se necesita conocer el precio.
+Del regulador y del inversor no constituyen datos que se necesiten almacenar, simplemente se mencionaron como complemento de
+información.
+
+
+## Definiciones
+
+<a name="caldera">**Caldera**</a>
+
+Sistema auxiliar de calentamiento de agua para la tubería de salida final del Acumulador que consiste en una caldera
+clasificada según fuente de energía (biomasa, gas o electricidad).
+
+<a name="acumu">**Acumulador**</a>
+
+Depósito de agua que es calentado por el agua del circuito de cerrado con tubos de cobre que proviene del panel solar.
 
 <a name="schema">
 </a>
@@ -53,5 +59,5 @@ Del regulador y del inversor sólo se necesita conocer el precio.
 <a name="graph">
 </a>
 
-<a name="">
+<a name="diferencias">
 </a>
