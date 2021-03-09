@@ -38,9 +38,7 @@ el tipo, precio y el código que la identifica.
 
 De los paneles fotovoltaicos se necesita conocer cantidad y precio unitario.
 
-De la batería se necesita conocer el tipo de batería (plomo-ácido u ion-litio) y el precio (determinado por el tipo).
-
-Del regulador y del inversor no constituyen datos que se necesiten almacenar, simplemente se mencionaron como complemento de
+El regulador y el inversor no constituyen datos que se necesiten almacenar, simplemente se mencionaron como complemento de
 información.
 
 
