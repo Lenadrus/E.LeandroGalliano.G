@@ -13,7 +13,7 @@
 * [Código SQL]()
 
 <a name="bout"></a>
-**Base de datos para empresa de instalación y mantenimiento de paneles solares**
+**Base de datos para una empresa de instalación y mantenimiento de paneles solares**
 
 Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
 
