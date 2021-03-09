@@ -23,8 +23,11 @@ y otro para el abastecimiento térmico (conocido como [panel solar térmico o co
 El panel solar térmico está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
-De los paneles solares térmicos, es necesario guardar la longitud total de las tuberías (en metros),
-la capacidad del acumulador (en Litros de agua), y el tipo de [caldera](#caldera) (de biomasa, a gas o eléctrica).
+De los panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el precio unitario,
+y el codigo que lo identifica.
+
+Del acumulador al que abastece, es necesario guardar el código, marca y modelo, así como también los de la
+caldera.
 
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
@@ -33,10 +36,9 @@ Información detallada: [*Cómo funciona una instalación de paneles solares té
 El panel solar fotovoltaico está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
 por panel fotovoltaico.
 
-Del panel fotovoltaico se requiere guardar la potencia y su precio unitario, así como de la batería
-el tipo, precio y el código que la identifica.
+Del panel fotovoltaico se requiere guardar la potencia (en Watios) y el código que lo identifica. 
 
-De los paneles fotovoltaicos se necesita conocer cantidad y precio unitario.
+De la batería se requiere el tipo (plomo-ácido o ion-litio) y el código que la identifica.
 
 El regulador y el inversor no constituyen datos que se necesiten almacenar, simplemente se mencionaron como complemento de
 información.
