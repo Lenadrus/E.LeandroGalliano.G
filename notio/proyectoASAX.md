@@ -30,6 +30,12 @@ cuanto más colectores haya.
 Del acumulador [al que abastece](expl/instalacionTermicaPaneles.md/#acumu), es necesario guardar el código, marca y modelo, así como también los de la
 caldera (la caldera se clasifica por tipo).
 
+Un acumulador es abastecido por el circuito hidráulico de un colector solar. Es decir, un colector solar sólamente
+abastece a un acumulador, porque sólo hay un acumulador por instalación térmica. Generalmente se trata de la unidad
+(colector solar) final de los paneles (en caso de que haya varios paneles conectados entre sí).
+
+Un acumulador es auxiliado por una caldera. Sólamente hay una caldera por instalación solar térmica.
+
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
@@ -42,6 +48,17 @@ De la batería se requiere el tipo (plomo-ácido o ion-litio) y el código que l
 
 El regulador y el inversor no constituyen datos que se necesiten almacenar, simplemente se mencionaron como complemento de
 información.
+
+El cliente puede comprar uno o varios paneles solares. Los paneles solares son instalados por un técnico instalador.
+
+Del técnico instalador se requiere el DNI, nombre completo y especialidad.
+
+Del cliente se requiere DNI, nombre completo y número de orden.
+
+Un cliente puede comprar uno o varios paneles solares. Un panel solar solamente puede ser comprado por un cliente a 
+la vez.
+
+Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamente puede ser instalado por un instalador.
 
 
 ## Definiciones
