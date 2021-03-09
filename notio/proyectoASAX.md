@@ -20,11 +20,12 @@ Se necesita la base de datos para una empresa que se dedica a la instalación y 
 Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico](#diferencias)), 
 y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#diferencias)).
 
-El panel solar térmico está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
+El **panel solar térmico** está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
-Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros)
-y el codigo que lo identifica.
+Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el codigo que lo identifica
+y la cantidad a instalar. La cantidad de colectores solares sólo determina la longitud del circuito hidráulico, siendo mayor
+cuanto más colectores haya.
 
 Del acumulador al que abastece, es necesario guardar el código, marca y modelo, así como también los de la
 caldera (la caldera se clasifica por tipo).
@@ -32,11 +33,10 @@ caldera (la caldera se clasifica por tipo).
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
-
-El panel solar fotovoltaico está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
+El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
 por panel fotovoltaico.
 
-Del panel fotovoltaico se requiere guardar la potencia (en Watios) y el código que lo identifica. 
+Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y la cantidad a instalar.
 
 De la batería se requiere el tipo (plomo-ácido o ion-litio) y el código que la identifica.
 
