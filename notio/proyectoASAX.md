@@ -62,7 +62,7 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 <a name="esquemaRel">**Esquema relacional**</a>
 
-[![](https://camo.githubusercontent.com/7b626cfd62b59b635f16ba736e29a4f62dd4df0e096f51c9b4c5e1333353d8ef/68747470733a2f2f7777772e6d65646961666972652e636f6d2f636f6e766b65792f353761632f6261676d7a6831643477706b7933627a672e6a7067)](https://camo.githubusercontent.com/7b626cfd62b59b635f16ba736e29a4f62dd4df0e096f51c9b4c5e1333353d8ef/68747470733a2f2f7777772e6d65646961666972652e636f6d2f636f6e766b65792f353761632f6261676d7a6831643477706b7933627a672e6a7067)
+<img src="https://www.mediafire.com/convkey/57ac/bagmzh1d4wpky3bzg.jpg" alt="esquemaRelacional" style="width:200px;"/>
 
 
 ## Definiciones
