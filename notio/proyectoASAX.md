@@ -65,6 +65,11 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 [<img src="https://www.mediafire.com/convkey/57ac/bagmzh1d4wpky3bzg.jpg" alt="esquemaRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/57ac/bagmzh1d4wpky3bzg.jpg)
 
 
+<a name="grafoRel">**Grafo relacional**</a>
+
+[<img src="https://www.mediafire.com/convkey/1169/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/1169/5z5ysnqwxf4yicazg.jpg)
+
+
 ## Definiciones
 
 <a name="caldera">**Caldera**</a>
