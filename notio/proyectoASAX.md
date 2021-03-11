@@ -6,7 +6,7 @@
 
 * [Esquema relacional](#esquemaRel)
 
-* [Grafo relacional]()
+* [Grafo relacional](#grafoRel)
 
 * [Diagrama relacional]()
 
