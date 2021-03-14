@@ -26,7 +26,9 @@ el intercambio de temperatura en el Acumulador.
 
 Una vez que se ha realizado el cambio de temperatura en el Acumulador, el agua caliente sanitaria sale por el orificio
 de salida situado en el lado base del Acumulador, pasa por un sistema auxiliar de calefacción, el que es una
-caldera. La caldera puede ser de diferentes tipos, distinguiéndose por su fuente de energía (gas, biomasa o electricidad).
+caldera. **La caldera es un sistema auxiliar para el acumulador, no para el panel.**
+
+La caldera puede ser de diferentes tipos, distinguiéndose por su fuente de energía (gas, biomasa o electricidad).
 Una vez que el agua sale del sistema auxiliar de calentamiento, se dirige a la sección deseada (grifo, ducha o radiador)
 para su consumo.
 Es obigatorio que la instalación entera disponga de caldera y acumulador.
