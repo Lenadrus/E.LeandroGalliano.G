@@ -8,9 +8,7 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Diagrama relacional]()
-
-* [Código SQL]()
+* [Código SQL](./code/PanelesSolares_declaracion.sql)
 
 <a name="bout"></a>
 **Base de datos para una empresa de instalación y mantenimiento de paneles solares**
@@ -67,7 +65,7 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 <a name="grafoRel">**Grafo relacional**</a>
 
-[<img src="https://www.mediafire.com/convkey/1169/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/1169/5z5ysnqwxf4yicazg.jpg)
+[<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg)
 
 
 ## Definiciones
