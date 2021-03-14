@@ -78,13 +78,4 @@ clasificada según fuente de energía (biomasa, gas o electricidad).
 
 <a name="acumu">**Acumulador**</a>
 
-Depósito de agua que es calentado por el agua del circuito de cerrado con tubos de cobre que proviene del panel solar.
-
-<a name="schema">
-</a>
-
-<a name="graph">
-</a>
-
-<a name="diferencias">
-</a>
+Depósito de agua que es calentado por el agua del circuito cerrado con tubos de cobre que proviene del panel solar.
