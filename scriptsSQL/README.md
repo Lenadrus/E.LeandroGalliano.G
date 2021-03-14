@@ -1,5 +1,7 @@
 # Scripts de SQL para SSMS
 
+### Scripts de Clase
+
  * [Northwind](./InstNwnd.sql)
  
 	* - [Errores encontrados](./err1.txt)
@@ -11,3 +13,7 @@
 * [AdventureWorks](./AdventureWorks.sql)
 
 	* - [Errores encontrados](./err3.txt)
+
+
+
+### Scripts propios para la clase
