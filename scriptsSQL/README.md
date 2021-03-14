@@ -14,7 +14,7 @@ __Listados por fecha de subida a ["la nube"](https://www.mediafire.com/folder/so
 
 * [TablasTemporales_2](./TemporalTablesClase_2_Feb_2021.sql)
 
-* [TablasTemporales_3](./tablasTemporales_28-01-2021--Jueves_\(version\ del\ sistema\).sql)
+* [TablasTemporales_3](./tablasTemporales_28-01-2021--Jueves-version_del_sistema.sql)
 
 * [SelectInOurDB](./select_in_ourDB.sql)
 
@@ -22,7 +22,7 @@ __Listados por fecha de subida a ["la nube"](https://www.mediafire.com/folder/so
 
 * [Trigger_SQLQuery](./trigger_SQLquery.sql)
 
-* [CreateLastModifiedColumn](./"1_Create a “Last Modified” Column.sql")
+* [CreateLastModifiedColumn](./1_Create_a_Last_Modified_Column.sql)
 
 * [Almacen_DB](./almacen.sql)
 
@@ -30,7 +30,7 @@ __Listados por fecha de subida a ["la nube"](https://www.mediafire.com/folder/so
 
 * [InMemoryTable](./In_memory_Table_Clase.sql)
 
-* [EjemploTablasTemporalesVstream](./"Ejemplo Tablas Temporales v Sistema.sql")
+* [EjemploTablasTemporalesVstream](./Ejemplo_Tablas_Temporales_v_Sistema.sql)
 
 
 
