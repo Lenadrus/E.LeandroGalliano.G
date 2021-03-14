@@ -38,7 +38,8 @@ Información detallada: [*Cómo funciona una instalación de paneles solares té
 
 
 El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
-por panel fotovoltaico.
+por panel fotovoltaico. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
+aparato electrodoméstico enchufable cuyos Watios de potencia requeridos no supere a los del panel.
 
 Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y la cantidad a instalar.
 
