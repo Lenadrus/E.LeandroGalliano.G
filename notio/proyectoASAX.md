@@ -24,11 +24,9 @@ El **panel solar térmico** está compuesto por unas tuberías (las que conforma
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
 Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el codigo que lo identifica
-y la cantidad a instalar. La cantidad de colectores solares sólo determina la longitud del circuito hidráulico, siendo mayor
-cuanto más colectores haya.
+y la cantidad a instalar.
 
-Del acumulador al que abastece, es necesario guardar el código, marca y modelo, así como también los de la
-caldera (y además, la caldera se clasifica por tipo).
+Del acumulador al que abastece, es necesario guardar el código, capacidad (volumen de acumulación de agua) marca y modelo, así como también los de la caldera (y además, la caldera se clasifica por tipo).
 
 Un acumulador es abastecido por el circuito hidráulico de un colector solar. Es decir, un colector solar sólamente
 abastece a un acumulador, porque sólo hay un acumulador por instalación térmica. Generalmente se trata de la unidad
@@ -39,8 +37,7 @@ Un acumulador es auxiliado por una caldera. Sólamente hay una caldera por insta
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
-El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería 
-por panel fotovoltaico. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
+El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería por panel fotovoltaico. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
 aparato electrodoméstico enchufable cuyos Watios de potencia requeridos no supere a los del panel.
 
 Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y la cantidad a instalar.
@@ -54,7 +51,7 @@ El cliente puede comprar uno o varios paneles solares. Los paneles solares son i
 
 Del técnico instalador se requiere el DNI, nombre completo y especialidad.
 
-Del cliente se requiere DNI, nombre completo y número de orden.
+Del cliente se requiere DNI, nombre y apellidos, así como identificar qué tipo de panel compra.
 
 Un cliente puede comprar uno o varios paneles solares. Un panel solar solamente puede ser comprado por un cliente a 
 la vez.
