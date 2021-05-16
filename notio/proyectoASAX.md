@@ -1,5 +1,7 @@
 # Proyecto para el módulo de ASAX [E.Leandro Galliano G]
 
+**Base de datos para una empresa de instalación y mantenimiento de paneles solares**
+
 ## Índice
 
 * [Enunciado](#bout)
@@ -11,7 +13,6 @@
 * [Código SQL](../proyecto_LeandroGalliano.sql)
 
 <a name="bout"></a>
-**Base de datos para una empresa de instalación y mantenimiento de paneles solares**
 
 Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
 
