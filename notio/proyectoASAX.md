@@ -12,6 +12,8 @@
 
 * [Código SQL](../proyecto_LeandroGalliano.sql)
 
+* [Definiciones](#defs)
+
 ##
 <a name="bout"></a>
 
@@ -67,7 +69,7 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 [<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg)
 
-
+<a name="defs"></a>
 ## Definiciones
 
 <a name="caldera">**Caldera**</a>
