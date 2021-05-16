@@ -8,7 +8,7 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Código SQL](./code/PanelesSolares_declaracion.sql)
+* [Código SQL](../proyecto_LeandroGalliano.sql)
 
 <a name="bout"></a>
 **Base de datos para una empresa de instalación y mantenimiento de paneles solares**
