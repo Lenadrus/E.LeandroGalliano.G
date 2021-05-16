@@ -10,7 +10,7 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Código SQL](../proyecto_LeandroGalliano.sql)
+* [Código T-SQL](../proyecto_LeandroGalliano.sql)
 
 * [Definiciones](#defs)
 
