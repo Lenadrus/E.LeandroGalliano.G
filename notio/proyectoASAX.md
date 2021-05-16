@@ -10,7 +10,12 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Código T-SQL](../proyecto_LeandroGalliano.sql)
+* [Código T-SQL original](../proyecto_LeandroGalliano.sql)
+
+  - Éste es el código original.
+* [Código T-SQL resumido](../codigoResumidoDeProyecto_leandroGalliano.sql)
+
+  - Éste código es el reusmido. Aquí sólo he pegado los trozos de código que crean todos los elementos de la BD.
 
 * [Definiciones](#defs)
 
