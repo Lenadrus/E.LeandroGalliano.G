@@ -12,6 +12,7 @@
 
 * [Código SQL](../proyecto_LeandroGalliano.sql)
 
+##
 <a name="bout"></a>
 
 Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
