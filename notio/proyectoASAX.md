@@ -13,7 +13,7 @@
 * [Código T-SQL original](../proyecto_LeandroGalliano.sql)
 
   - Éste es el código original. Hay correcciones y todo está comentado.
-* [Código T-SQL resumido](../codigoResumidoDeProyecto_leandroGalliano.sql)
+* [Código T-SQL resumido](../codigoResumido_proyeco_LeandroGalliano)
 
   - Éste código es el resumido. Aquí sólo he pegado los trozos de código que crean todos los elementos de la BD,
 saltando correciones de código in situ.
