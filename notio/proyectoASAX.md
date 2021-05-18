@@ -18,6 +18,8 @@
   - Éste código es el resumido. Aquí sólo he pegado los trozos de código que crean todos los elementos de la BD,
 saltando correciones de código in situ.
 
+* [Aclaraciones](#acla)
+
 * [Definiciones](#defs)
 
 ##
@@ -74,6 +76,13 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 <a name="grafoRel">**Grafo relacional**</a>
 
 [<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg)
+
+<a name="acla"></a>
+## Aclaraciones
+
+Durante la codificación de la base de datos. He tenido que saltar la creación de tres Entidades en el esquema
+relacional; Baterias, Acumulador y Caldera. Por la razón de que eccedía el límite de anidado de funciones @@NESTLEVEL
+por encima de 32. 
 
 <a name="defs"></a>
 ## Definiciones
