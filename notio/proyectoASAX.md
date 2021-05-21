@@ -77,12 +77,6 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 [<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/88eb/sbw99v97hxjcpvdzg.jpg)
 
-<a name="acla"></a>
-## Aclaraciones
-
-Durante la codificación de la base de datos. He tenido que saltar la creación de tres Entidades en el esquema
-relacional; Baterias, Acumulador y Caldera. Por la razón de que eccedía el límite de anidado de funciones @@NESTLEVEL
-por encima de 32. 
 
 <a name="defs"></a>
 ## Definiciones
