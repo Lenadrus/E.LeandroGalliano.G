@@ -13,31 +13,9 @@ CREATE TABLE PanelSolar (ID_panel VARCHAR(4) PRIMARY KEY NOT NULL,
 tipo_panel CHAR(20) NOT NULL
 );
 GO
---
-/*
-El atributo "tipo_panel" de la entidad "PanelSolar" sólo puede obtener dos posibles valores
-que el usuario debería conocer. Éstos son: 'fotovoltaico' o 'termico', todo en minúsculas.
-Si el atributo "tipo_panel" recibe un valor distinto de los mencionados, salta el trigger
-que ejecuta un ROLLBACK:
-*/
-CREATE OR ALTER TRIGGER valorUnico ON PanelSolar
-FOR INSERT AS IF('%' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel NOT IN ('termico','fotovoltaico')))
-BEGIN
-ROLLBACK;
-PRINT 
---Comprobamos su funcionamiento:
-INSERT INTO PanelSolar VALUES ('100N','electrotermico');
-GO
---Sólamente puedes insertar dos únicos posibles valores de tipo de panel específicos que debes conocer...
---Msg 3609, Level 16, State 1, Line 31
---The transaction ended in the trigger. The batch has been aborted.
-SELECT * FROM PanelSolar;
-Go
---
---ID_panel	tipo_panel
 /*
 Como se muestra en el esquema relacional, PanelSolar es una Entidad que después bifurca en dos
-subentidades o entidades débiles; Fotovoltaico y Termico.
+subentidades o entidades débiles; Fotovoltaico y Colector.
 
 La tabla "PanelSolar" sólo tiene dos atributos porque su clave primaria servirá como clave ajena
 en otras dos tablas que la necesitarán: "Fotovoltaico" y "Térmico". El atributo "tipo_panel"
@@ -47,7 +25,6 @@ La ID del panel solar no podrá coincidir como clave ajena en las sub-entidades
 "Fotovoltaico" y "Térmico". Es decir, un coche diésel y otro coche eléctrico no pueden tener 
 la misma matrícula... 
 */
--- Procedo a crear las sub-entidades y posteriormente el trigger mencionado: 
 CREATE TABLE Fotovoltaico (
 ID_fotovoltaico VARCHAR(4) NOT NULL FOREIGN KEY REFERENCES PanelSolar(ID_panel),
 marca_fotovoltaico CHAR(20),
@@ -55,68 +32,110 @@ modelo_fotovoltaico CHAR(20),
 potencia_fotovoltaico NUMERIC(4));
 GO
 --
-CREATE TABLE Termico (
+CREATE TABLE Colector (
 ID_termico VARCHAR(4) NOT NULL FOREIGN KEY REFERENCES PanelSolar(ID_panel),
 marca_colector CHAR(20), modelo_colector CHAR(20), longitud_tuberia NUMERIC(2));
 GO
 --
-
 /*
+El atributo "tipo_panel" de la entidad "PanelSolar" sólo puede obtener dos posibles valores
+que el usuario debería conocer. Éstos son: 'fotovoltaico' o 'termico', todo en minúsculas.
+Si el atributo "tipo_panel" recibe un valor distinto de los mencionados, salta el trigger
+que ejecuta un ROLLBACK.
 Ahora tengo que conseguir que, al insertar un ID de panel de un tipo determinado
 en la tabla "PanelSolar", se inserte automáticamente en las sub-entidades correspondientes.
-Para lo que me valdré de un par triggers más...
-Para que el siguiente trigger funcione, debo crear una función que detecte
-que lo que voy a insertar no se encuentra ya en la sub-entidad correspondiente.
+Para lo que fusionaré dos IFs al trigger de "valor único"...
 */
 --
-CREATE OR ALTER FUNCTION asignarFotovoltaico (@storeid VARCHAR(4))
-RETURNS TABLE
-AS RETURN (
-SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
-WHERE ID_panel NOT IN (SELECT ID_termico FROM Termico));
-GO
 --
-DELETE FROM Fotovoltaico;DELETE FROM Termico;DELETE FROM PanelSolar;-- Por si me hace falta...
+--
+--
+--
+CREATE OR ALTER TRIGGER denominacionPanel ON PanelSolar
+FOR INSERT AS IF('%' NOT IN (SELECT tipo_panel FROM PanelSolar 
+WHERE tipo_panel IN ('termico','fotovoltaico')))
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
+END ELSE
+IF('fotovoltaico' NOT IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel NOT LIKE 'termico'))
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
+END ELSE
+IF('termico' NOT IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel NOT LIKE 'fotovoltaico'))
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
+END
+GO
+--Comprobamos su funcionamiento:
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('100N','electro');
+GO
+--Sólamente puedes insertar dos únicos posibles valores de tipo de panel específicos que debes conocer...
+--Msg 3609, Level 16, State 1, Line 31
+--The transaction ended in the trigger. The batch has been aborted.
+SELECT * FROM PanelSolar;
+Go
+--
+--ID_panel	tipo_panel
+
+-- Procedo a crear las sub-entidades y posteriormente el trigger mencionado: 
+--
+DELETE FROM Fotovoltaico;DELETE FROM Colector;DELETE FROM PanelSolar;-- Por si me hace falta...
 --Ésta función previene que inserte dos veces el mismo ID en la sub-entidad correspondiente
 --
 --Procedo a crear el trigger mencionado en el anterior comentario de líneas múltiples:
-CREATE OR ALTER TRIGGER auto_Fotovoltaico
-ON PanelSolar FOR INSERT 
-AS IF('fotovoltaico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IN ('fotovoltaico')))
-BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
-INSERT INTO Fotovoltaico(ID_fotovoltaico) VALUES ((SELECT * FROM asignarFotovoltaico(1)));
---UPDATE Fotovoltaico SET ID_fotovoltaico = (SELECT * FROM asignarFotovoltaico(1));
-END
-GO
+--CREATE OR ALTER TRIGGER auto_Fotovoltaico
+--ON PanelSolar AFTER INSERT 
+--AS IF('fotovoltaico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IS NOT NULL
+--AND tipo_panel NOT LIKE 'termico'))
+--BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
+--INSERT INTO Fotovoltaico(ID_fotovoltaico)
+--VALUES (
+--	(SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
+--	WHERE ID_panel NOT IN (SELECT ID_fotovoltaico FROM Fotovoltaico)));
+----DELETE FROM Colector WHERE ID_termico LIKE (SELECT ID_panel FROM PanelSolar);
+--END
+--Go
+DELETE FROM Fotovoltaico;DELETE FROM Colector;DELETE FROM PanelSolar;
+SELECT * FROM PanelSolar;
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES('A002','fotovoltaico');
+SELECT * FROM Fotovoltaico;
 --
 /*
-Procedo a hacer lo mismo para el panel Termico. Las funciones y el trigger:
+Procedo a hacer lo mismo para el panel Termico (el Colector). Las funciones y el trigger:
 */
-CREATE OR ALTER FUNCTION asignarTermico (@storeid VARCHAR(4))
-RETURNS TABLE
-AS RETURN (
-SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
-WHERE ID_panel --NOT IN (SELECT ID_termico FROM Termico)
-NOT IN (SELECT ID_fotovoltaico FROM Fotovoltaico)
-AND ID_panel IS NOT NULL); -- He agregado ésta línea.
-GO
+--CREATE OR ALTER FUNCTION asignarTermico (@storeid VARCHAR(4))
+--RETURNS TABLE
+--AS RETURN (
+--SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
+--WHERE ID_panel NOT IN (SELECT ID_termico FROM Colector)
+-- AND ID_panel NOT IN (SELECT ID_fotovoltaico FROM Fotovoltaico)
+--AND ID_panel IS NOT NULL); -- He agregado ésta línea.
+--GO
 --
-CREATE OR ALTER TRIGGER auto_Termico
-ON [dbo].[PanelSolar] FOR INSERT 
-AS IF('termico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IN ('%')))
-BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
-INSERT INTO Termico(ID_termico) VALUES ((SELECT * FROM asignarTermico(0)));
---UPDATE Termico SET ID_termico = (SELECT * FROM asignarTermico(0)); -- He cambiado INSERT por UPDATE.
-END
-GO
+--CREATE OR ALTER TRIGGER auto_Termico
+--ON PanelSolar AFTER INSERT 
+--AS IF('termico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IS NOT NULL
+--AND tipo_panel NOT LIKE 'fotovoltaico'))
+--BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
+--INSERT INTO Colector(ID_termico) 
+--VALUES (
+--	(SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
+--	WHERE ID_panel NOT IN (SELECT ID_termico FROM Colector)));
+----DELETE FROM Colector WHERE ID_termico LIKE (SELECT ID_panel FROM PanelSolar);
+--END
+--Go
 --
 -- Lo compruebo:
 SELECT * FROM PanelSolar;
 Go
 --ID_panel	tipo_panel
 --100A	fotovoltaico
-INSERT INTO PanelSolar VALUES ('M001','termico');
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('M002','termico');
 GO
+SELECT * FROM Colector;
 --(1 row affected)
 --No es posible insertar el ID de un panel termico en la tabla de un panel fotovoltaico...
 
@@ -125,12 +144,12 @@ GO
 --(1 row affected)
 
 --(1 row affected)
-SELECT * FROM Termico;
+SELECT * FROM Colector;
 GO
 --ID_termico	marca_colector	modelo_colector	longitud_tuberia
 --M001	NULL	NULL	NULL
 INSERT INTO PanelSolar VALUES ('M002','termico');
-SELECT * FROM Termico;
+SELECT * FROM Colector;
 GO
 --ID_termico	marca_colector	modelo_colector	longitud_tuberia
 --M001	NULL	NULL	NULL
@@ -153,7 +172,7 @@ El ID del panel será el ID de compra en la tabla "pedidos".
 En ésta tabla se conoce la relación entre el Cliente y el PanelSolar. Es aquí donde se establece
 la relación "un cliente a varios paneles".
 */
-CREATE TABLE pedidos (
+CREATE TABLE Pedidos (
 ID_pedido INT PRIMARY KEY NOT NULL, -- Ésta clave es un anzuelo para que pueda crearse la tabla.
 ID_cliente NVARCHAR(9) FOREIGN KEY REFERENCES Cliente(DNI_cliente) NOT NULL,
 ID_compra VARCHAR(4) NOT NULL,
@@ -261,94 +280,64 @@ Los paralelos "Simetra", cuestan un total de 1300€
 ALTER TABLE PanelSolar ADD precio_panel MONEY;
 GO
 --
-CREATE OR ALTER TRIGGER calcularPrecio_minum 
-ON Fotovoltaico FOR INSERT, UPDATE
-AS IF ('minum' = (SELECT modelo_fotovoltaico FROM Fotovoltaico
-					WHERE ID_fotovoltaico IN (SELECT DISTINCT(LAST_VALUE(ID_fotovoltaico) 
-						OVER (ORDER BY ID_fotovoltaico ASC)))))
-BEGIN
-UPDATE PanelSolar SET precio_panel = 200
-	WHERE ID_panel IN (SELECT DISTINCT(FIRST_VALUE(ID_fotovoltaico) 
-						OVER (ORDER BY ID_fotovoltaico ASC)) FROM Fotovoltaico
-						WHERE ID_fotovoltaico NOT IN (SELECT ID_compra FROM pedidos));
-END
+DELETE FROM Fotovoltaico;DELETE FROM PanelSolar;
+Go
+--
+--CREATE OR ALTER TRIGGER calcularPrecio_fotovoltaico
+--ON Fotovoltaico
+--FOR INSERT, UPDATE 
+--AS IF('minum' IN (SELECT DISTINCT(LAST_VALUE(modelo_fotovoltaico) OVER (ORDER BY modelo_fotovoltaico ASC)) 
+--FROM Fotovoltaico WHERE ID_fotovoltaico IS NOT NULL))
+--BEGIN
+--UPDATE PanelSolar SET precio_panel = 200 WHERE ID_panel IN (SELECT
+--DISTINCT(ID_fotovoltaico) FROM Fotovoltaico
+--WHERE modelo_fotovoltaico LIKE 'minum');
+--END ELSE IF('maxell' IN (SELECT DISTINCT(LAST_VALUE(modelo_fotovoltaico) OVER (ORDER BY modelo_fotovoltaico ASC)) 
+--FROM Fotovoltaico WHERE ID_fotovoltaico IS NOT NULL))
+--BEGIN
+--UPDATE PanelSolar SET precio_panel = 1150 WHERE ID_panel IN (SELECT
+--DISTINCT(ID_fotovoltaico) FROM Fotovoltaico
+--WHERE modelo_fotovoltaico LIKE 'maxell');
+--END
 GO
-DELETE FROM Termico;DELETE FROM Fotovoltaico;DELETE FROM PanelSolar;DELETE FROM Cliente;
+--
+DELETE FROM Fotovoltaico;DELETE FROM Colector;DELETE FROM PanelSolar;
 GO
+--
+--CREATE OR ALTER TRIGGER calcularPrecio_termico
+--ON Termico
+--FOR INSERT, UPDATE 
+--AS IF('seriem' IN (SELECT DISTINCT(modelo_fotovoltaico) FROM Fotovoltaico
+--								WHERE ID_fotovoltaico IS NOT NULL))
+--BEGIN
+--UPDATE PanelSolar SET precio_panel = 490 WHERE ID_panel = (SELECT
+--DISTINCT(ID_fotovoltaico) FROM Fotovoltaico);
+--END ELSE IF('simetra' IN (SELECT DISTINCT(modelo_fotovoltaico) FROM Fotovoltaico
+--								WHERE ID_fotovoltaico IS NOT NULL))
+--BEGIN
+--UPDATE PanelSolar SET precio_panel = 1300 WHERE ID_panel = (SELECT
+--DISTINCT(ID_fotovoltaico) FROM Fotovoltaico);
+--END
+
+----
+--DELETE FROM Fotovoltaico;DELETE FROM PanelSolar;
+Go
+--
+SELECT * FROM PanelSolar;
 INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('A001','fotovoltaico');
-GO
 SELECT * FROM Fotovoltaico;
-GO
-UPDATE Fotovoltaico SET modelo_fotovoltaico = 'minum';
-GO
-SELECT * FROM PanelSolar;
---ID_panel	tipo_panel	precio_panel
---A001	fotovoltaico        	200,00
---
---Lo mismo para todo lo demás:
---
-CREATE OR ALTER TRIGGER calcularPrecio_maxell
-ON Fotovoltaico FOR INSERT, UPDATE
-AS IF ('maxell' = (SELECT modelo_fotovoltaico FROM Fotovoltaico
-					WHERE ID_fotovoltaico IN (SELECT DISTINCT(LAST_VALUE(ID_fotovoltaico) 
-						OVER (ORDER BY ID_fotovoltaico ASC)))))
-BEGIN
-UPDATE PanelSolar SET precio_panel = 1150
-	WHERE ID_panel IN (SELECT DISTINCT(FIRST_VALUE(ID_fotovoltaico) 
-						OVER (ORDER BY ID_fotovoltaico ASC)) FROM Fotovoltaico
-						WHERE ID_fotovoltaico NOT IN (SELECT ID_compra FROM pedidos));
-END
-GO
---
---
-CREATE OR ALTER TRIGGER calcularPrecio_seriem
-ON Termico FOR INSERT, UPDATE
-AS IF ('seriem' = (SELECT modelo_colector FROM Termico
-					WHERE ID_termico IN (SELECT DISTINCT(LAST_VALUE(ID_termico) 
-						OVER (ORDER BY ID_termico ASC)))))
-BEGIN
-UPDATE PanelSolar SET precio_panel = 490
-	WHERE ID_panel IN (SELECT DISTINCT(FIRST_VALUE(ID_termico) 
-						OVER (ORDER BY ID_termico ASC)) FROM Termico
-						WHERE ID_termico NOT IN (SELECT ID_compra FROM pedidos));
-END
-GO
-CREATE OR ALTER TRIGGER calcularPrecio_simetra
-ON Termico FOR INSERT, UPDATE
-AS IF ('simetra' = (SELECT modelo_colector FROM Termico
-					WHERE ID_termico IN (SELECT DISTINCT(LAST_VALUE(ID_termico) 
-						OVER (ORDER BY ID_termico ASC)))))
-BEGIN
-UPDATE PanelSolar SET precio_panel = 1300
-	WHERE ID_panel IN (SELECT DISTINCT(FIRST_VALUE(ID_termico) 
-						OVER (ORDER BY ID_termico ASC)) FROM Termico
-						WHERE ID_termico NOT IN (SELECT ID_compra FROM pedidos));
-END
-GO
---Lo compruebo:
-DELETE FROM Termico;DELETE FROM Fotovoltaico;DELETE FROM PanelSolar;
-SELECT * FROM PanelSolar;
-GO
-INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('A001','fotovoltaico');
-GO
-SELECT * FROM Termico;SELECT * FROM Fotovoltaico;
-UPDATE Fotovoltaico SET modelo_fotovoltaico = 'minum';
---ID_panel	tipo_panel	precio_panel
---A001	fotovoltaico        	200,00
+UPDATE Fotovoltaico SET modelo_fotovoltaico = 'minum' WHERE ID_fotovoltaico LIKE 'A001';
 --
 /*
 Falta establecer la relación de los fotovoltaicos con las baterías y la relación
 de los coelctores con los acumuladores y éstos con las calderas.
 */
 -- Baterías:
-CREATE TABLE bateria (
+CREATE TABLE Bateria (
 ID_bateria VARCHAR(5) PRIMARY KEY NOT NULL,
 enchufe VARCHAR(4), -- Será el valor del Fotovoltaico al que refencia.
 tipo_bateria CHAR(20),
 precio_bateria MONEY);
---
-);
-END
 GO
 -- Creo un trigger que controle que el atributo "enchufe" únicamente pueda llevar
 -- un valor igual a una clave de la entidad Fotovoltaico.
@@ -364,7 +353,10 @@ DELETE FROM bateria WHERE enchufe NOT IN (
 	SELECT ID_fotovoltaico FROM Fotovoltaico)
 END
 Go
+SELECT * FROM PanelSolar;
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('A002','fotovoltaico');
 SELECT * FROM Fotovoltaico;
+UPDATE Fotovoltaico SET modelo_fotovoltaico = 'maxell' WHERE ID_fotovoltaico LIKE 'A002';
 -- Lo compruebo:
 INSERT INTO bateria(ID_bateria, enchufe)
 VALUES ('P0001','A001');
@@ -372,8 +364,11 @@ SELECT * FROM bateria;
 --ID_bateria	enchufe	tipo_bateria	precio_bateria
 --P0001	A001	NULL	NULL
 -- Ahora intendo insertar un valor distinto:
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('M001','termico');
 INSERT INTO bateria(ID_bateria, enchufe)
 VALUES ('P0002','M001');
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('M001','termico');
+SELECT * FROM Colector;
 --Sólo puedes insertar el valor del ID del panel Fotovoltaico al que quieres relacionar ésta batería...
 
 --(1 row affected)
@@ -384,67 +379,81 @@ Como establecido en el enunciado, sólo hay dos tipos de baterías. Las de litio y
 El precio se establecerá en función al tipo de batería.
 Así que tengo que crear dos triggers más: "diferenciar_tipo_bateria" y "establecer_precio_bateria".
 */
-CREATE OR ALTER TRIGGER diferenciar_plomo
+CREATE OR ALTER TRIGGER diferenciar_bateria
 ON bateria
 FOR INSERT, UPDATE
-AS IF ('plomo' NOT IN (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL))
+AS IF ('plomo' <> (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL
+AND tipo_bateria NOT LIKE 'litio'))
 BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Sólo puedes insertar alguno de los valores de tipo de batería que debes conocer.';
+END ELSE IF ('litio' <> (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL
+AND tipo_bateria NOT LIKE 'plomo'))
+BEGIN
+ROLLBACK TRANSACTION;
 PRINT 'Sólo puedes insertar alguno de los valores de tipo de batería que debes conocer.';
 END
 GO
+--
+DELETE FROM bateria;
+--
 SELECT * FROM bateria;
-INSERT INTO bateria(ID_bateria,tipo_bateria) VALUES('P0001','plomo');
+GO
+INSERT INTO bateria(ID_bateria,tipo_bateria) VALUES('P0003','litio');
+GO
 SELECT * FROM bateria;
---ID_bateria	enchufe	tipo_bateria	precio_bateria
---P0001	NULL	plomo               	NULL
--- Controlamos el precio de la batería de plomo.
--- Las baterías de plomo-ácido son más baratas, porque 
--- se desgastan mucho antes tras varos usos, y tardan más en cargar.
-CREATE OR ALTER TRIGGER precio_plomo ON bateria
-FOR INSERT,UPDATE
-AS IF ('plomo' IN (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL))
-BEGIN
-UPDATE bateria SET precio_bateria = 50
-WHERE tipo_bateria LIKE 'plomo';
-END
+GO
+--
+--
 GO
 DELETE FROM bateria;
 INSERT INTO bateria (ID_bateria,tipo_bateria) VALUES ('P0001','plomo');
 SELECT * FROM bateria;
---ID_bateria	enchufe	tipo_bateria	precio_bateria
---P0001	NULL	plomo               	50,00
-/*
-Lo mismo para las baterías de litio:
-*/
-CREATE OR ALTER TRIGGER diferenciar_litio
-ON bateria
-FOR INSERT, UPDATE
-AS IF ('litio' NOT IN (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL))
-BEGIN
-PRINT 'Sólo puedes insertar alguno de los valores de tipo de batería que debes conocer.';
-END
-GO
---
-CREATE OR ALTER TRIGGER precio_litio ON bateria
-FOR INSERT, UPDATE
-AS IF ('litio' IN (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL))
-BEGIN
-UPDATE bateria SET precio_bateria = 150 WHERE tipo_bateria LIKE 'litio';
-END
-GO
 -- Las baterías de litio tienen más vida util en cantidad de uso (por carga y descarga),
 -- además, tarda menos en cargar que la de plomo-ácido. Es más cara.
-SELECT * FROM bateria;
-INSERT INTO bateria(ID_bateria,tipo_bateria) VALUES ('L0001','litio');
---Maximum stored procedure, function, trigger, or view nesting level exceeded (limit 32).
 
 /*
-He superado el límite de "anidado" de llamadas a funciones en la base de datos SQL.
-Por lo que decido modificar mi esquema relacional, así como el grafo relacional, eliminando
-las entidades de "Bateria", "Acumuladores" y "calderas". Dejándo sólo a los técnicos, los paneles
-y los clientes. Procederé a crear las relaciones entre los técnicos y los paneles, así como
-establecer el precio de mano de obra de los mismo (que sería un 33% de la instalación),
-que era lo que tenía pensado dejar para el final.
+Me falta el Acumulador y la Caldera.
+El acumulador es abastecido por un colector. Así que crearé un constraint a 
+la tabla Termico que almacene la FK del ID del Acumulador.
+Asímismo, la caldera es un sistema auxiliar para el acumulador. Por lo que habría
+que crear otro constraint entre el acumualdor y la caldera.
 */
-DROP TABLE bateria;
+CREATE TABLE Acumulador(
+ID_acumulador VARCHAR(5) PRIMARY KEY NOT NULL,
+marca_acumulador CHAR(20), modelo_acumulador CHAR(20),
+capacidad_acumulador NUMERIC(3)
+);
+GO
+CREATE TABLE Caldera(
+ID_caldera VARCHAR(5) PRIMARY KEY NOT NULL,
+marca_caldera CHAR(20), modelo_caldera CHAR(20),
+tipo_caldera CHAR(20)
+);
+GO
+ALTER TABLE Colector ADD abastece VARCHAR(5);
+GO
+ALTER TABLE Colector ADD CONSTRAINT abastecimiento 
+FOREIGN KEY (abastece) REFERENCES Acumulador(ID_acumulador);
+GO
+ALTER TABLE Acumulador ADD auxilio VARCHAR(5);
+GO
+ALTER TABLE Acumulador ADD CONSTRAINT auxiliar FOREIGN KEY (auxilio)
+REFERENCES Caldera(ID_caldera);
+GO
 --
+CREATE TABLE Tecnico(
+DNI_tecnico NVARCHAR(9) PRIMARY KEY NOT NULL,
+nombre_tecnico VARCHAR(20), primer_apellido_tecnico CHAR(20),
+segundo_apellido_tecnico CHAR(20),
+especialidad_tecnico CHAR(30),
+telefono_tecnico NUMERIC(9),
+mobil_tecnico NUMERIC(9));
+Go
+-- Me interesa controlar qué panel tiene que instalar o mantener el técnico, para lo que creo
+-- una columna de "orden de servicio":
+ALTER TABLE Tecnico ADD orden_servicio_tecnico VARCHAR(4);
+GO
+ALTER TABLE Tecnico ADD CONSTRAINT trabajo FOREIGN KEY (orden_servicio_tecnico)
+REFERENCES PanelSolar(ID_panel);
+GO -- Éste es el panel que le toca instalar o mantener al técnico.
