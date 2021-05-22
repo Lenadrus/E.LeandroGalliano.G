@@ -26,16 +26,17 @@ La ID del panel solar no podrá coincidir como clave ajena en las sub-entidades
 la misma matrícula... 
 */
 CREATE TABLE Fotovoltaico (
-ID_fotovoltaico VARCHAR(4) NOT NULL FOREIGN KEY REFERENCES PanelSolar(ID_panel),
+ID_fotovoltaico VARCHAR(4) FOREIGN KEY REFERENCES PanelSolar(ID_panel),
 marca_fotovoltaico CHAR(20),
 modelo_fotovoltaico CHAR(20),
 potencia_fotovoltaico NUMERIC(4));
 GO
 --
 CREATE TABLE Colector (
-ID_termico VARCHAR(4) NOT NULL FOREIGN KEY REFERENCES PanelSolar(ID_panel),
+ID_termico VARCHAR(4) FOREIGN KEY REFERENCES PanelSolar(ID_panel),
 marca_colector CHAR(20), modelo_colector CHAR(20), longitud_tuberia NUMERIC(2));
 GO
+-- Se declaran las FK como "NULL" porque existe un error después al hacer un trigger...
 --
 /*
 El atributo "tipo_panel" de la entidad "PanelSolar" sólo puede obtener dos posibles valores
@@ -51,24 +52,21 @@ Para lo que fusionaré dos IFs al trigger de "valor único"...
 --
 --
 --
-CREATE OR ALTER TRIGGER denominacionPanel ON PanelSolar
-FOR INSERT AS IF('%' NOT IN (SELECT tipo_panel FROM PanelSolar 
-WHERE tipo_panel IN ('termico','fotovoltaico')))
-BEGIN
-ROLLBACK TRANSACTION;
-PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
-END ELSE
-IF('fotovoltaico' NOT IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel NOT LIKE 'termico'))
-BEGIN
-ROLLBACK TRANSACTION;
-PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
-END ELSE
-IF('termico' NOT IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel NOT LIKE 'fotovoltaico'))
-BEGIN
-ROLLBACK TRANSACTION;
-PRINT 'Sólamente puedes insertar un valor de tipo de panel de entre dos que debes conocer...';
-END
-GO
+--CREATE OR ALTER TRIGGER denominacionPanel ON PanelSolar
+--AFTER INSERT AS IF('fotovoltaico' <> (
+--SELECT DISTINCT(LAST_VALUE(tipo_panel) OVER (ORDER BY tipo_panel ASC)) 
+--FROM PanelSolar WHERE tipo_panel NOT LIKE 'termico'))
+--BEGIN
+--ROLLBACK TRANSACTION;
+--PRINT 'Debe insertar un nombre de tipo de panel válido.';
+--END ELSE
+--IF('termico' <> (SELECT DISTINCT(LAST_VALUE(tipo_panel) OVER (ORDER BY tipo_panel ASC)) 
+--FROM PanelSolar WHERE tipo_panel NOT LIKE 'fotovoltaico'))
+--BEGIN
+--ROLLBACK TRANSACTION;
+--PRINT 'Debe insertar un nombre de tipo de panel válido.';
+--END
+--GO
 --Comprobamos su funcionamiento:
 INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('100N','electro');
 GO
@@ -86,22 +84,38 @@ DELETE FROM Fotovoltaico;DELETE FROM Colector;DELETE FROM PanelSolar;-- Por si m
 --Ésta función previene que inserte dos veces el mismo ID en la sub-entidad correspondiente
 --
 --Procedo a crear el trigger mencionado en el anterior comentario de líneas múltiples:
---CREATE OR ALTER TRIGGER auto_Fotovoltaico
---ON PanelSolar AFTER INSERT 
---AS IF('fotovoltaico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IS NOT NULL
---AND tipo_panel NOT LIKE 'termico'))
---BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
---INSERT INTO Fotovoltaico(ID_fotovoltaico)
---VALUES (
---	(SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
---	WHERE ID_panel NOT IN (SELECT ID_fotovoltaico FROM Fotovoltaico)));
-----DELETE FROM Colector WHERE ID_termico LIKE (SELECT ID_panel FROM PanelSolar);
---END
---Go
+--
+CREATE OR ALTER TRIGGER asignarPanel
+ON PanelSolar
+FOR INSERT
+AS IF('fotovoltaico' IN (SELECT tipo_panel FROM PanelSolar))
+BEGIN
+INSERT INTO Fotovoltaico(ID_fotovoltaico) VALUES (
+(SELECT TOP 1 ID_panel FROM PanelSolar
+WHERE tipo_panel IN ('fotovoltaico') 
+AND ID_panel NOT IN (SELECT ID_fotovoltaico FROM Fotovoltaico)
+ORDER BY ID_panel DESC))
+DELETE FROM Colector WHERE ID_termico IS NULL;
+DELETE FROM Fotovoltaico WHERE ID_fotovoltaico IS NULL;
+
+END
+IF('termico' IN (SELECT tipo_panel FROM PanelSolar))
+BEGIN
+INSERT INTO Colector(ID_termico) VALUES (
+(SELECT TOP 1 ID_panel FROM PanelSolar
+WHERE tipo_panel IN ('termico')
+AND ID_panel NOT IN (SELECT ID_termico FROM Colector)
+ORDER BY ID_panel DESC))
+DELETE FROM Fotovoltaico WHERE ID_fotovoltaico IS NULL;
+DELETE FROM Colector WHERE ID_termico IS NULL;
+END
+GO
+--
 DELETE FROM Fotovoltaico;DELETE FROM Colector;DELETE FROM PanelSolar;
 SELECT * FROM PanelSolar;
 INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES('A002','fotovoltaico');
 SELECT * FROM Fotovoltaico;
+GO
 --
 /*
 Procedo a hacer lo mismo para el panel Termico (el Colector). Las funciones y el trigger:
@@ -115,25 +129,14 @@ Procedo a hacer lo mismo para el panel Termico (el Colector). Las funciones y el
 --AND ID_panel IS NOT NULL); -- He agregado ésta línea.
 --GO
 --
---CREATE OR ALTER TRIGGER auto_Termico
---ON PanelSolar AFTER INSERT 
---AS IF('termico' IN (SELECT tipo_panel FROM PanelSolar WHERE tipo_panel IS NOT NULL
---AND tipo_panel NOT LIKE 'fotovoltaico'))
---BEGIN -- El WHERE anterior sirve para prevenir el error "Msg 512".
---INSERT INTO Colector(ID_termico) 
---VALUES (
---	(SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER(ORDER BY ID_panel)) AS 'ID' FROM PanelSolar
---	WHERE ID_panel NOT IN (SELECT ID_termico FROM Colector)));
-----DELETE FROM Colector WHERE ID_termico LIKE (SELECT ID_panel FROM PanelSolar);
---END
---Go
+
 --
 -- Lo compruebo:
 SELECT * FROM PanelSolar;
 Go
 --ID_panel	tipo_panel
 --100A	fotovoltaico
-INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('M002','termico');
+INSERT INTO PanelSolar(ID_panel,tipo_panel) VALUES ('M001','termico');
 GO
 SELECT * FROM Colector;
 --(1 row affected)
@@ -345,7 +348,7 @@ GO
 -- de clave foránea con Fotovoltaico. Además de que Fotovoltaico no dispone de clave principal.
 CREATE OR ALTER TRIGGER alimentacion ON bateria
 FOR INSERT,UPDATE 
-AS IF('%' <> (SELECT enchufe FROM bateria 
+AS IF('%' NOT IN (SELECT enchufe FROM bateria 
 		WHERE enchufe IN (SELECT ID_fotovoltaico FROM Fotovoltaico)))
 BEGIN
 PRINT 'Sólo puedes insertar el valor del ID del panel Fotovoltaico al que quieres relacionar ésta batería...';
@@ -382,13 +385,8 @@ Así que tengo que crear dos triggers más: "diferenciar_tipo_bateria" y "establec
 CREATE OR ALTER TRIGGER diferenciar_bateria
 ON bateria
 FOR INSERT, UPDATE
-AS IF ('plomo' <> (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL
-AND tipo_bateria NOT LIKE 'litio'))
-BEGIN
-ROLLBACK TRANSACTION;
-PRINT 'Sólo puedes insertar alguno de los valores de tipo de batería que debes conocer.';
-END ELSE IF ('litio' <> (SELECT DISTINCT(tipo_bateria) FROM bateria WHERE tipo_bateria IS NOT NULL
-AND tipo_bateria NOT LIKE 'plomo'))
+AS IF((SELECT TOP 1 tipo_bateria FROM Bateria WHERE tipo_bateria IS NOT NULL
+ORDER BY tipo_bateria DESC) NOT IN ('plomo','litio'))
 BEGIN
 ROLLBACK TRANSACTION;
 PRINT 'Sólo puedes insertar alguno de los valores de tipo de batería que debes conocer.';
@@ -425,21 +423,40 @@ marca_acumulador CHAR(20), modelo_acumulador CHAR(20),
 capacidad_acumulador NUMERIC(3)
 );
 GO
+--
 CREATE TABLE Caldera(
 ID_caldera VARCHAR(5) PRIMARY KEY NOT NULL,
 marca_caldera CHAR(20), modelo_caldera CHAR(20),
 tipo_caldera CHAR(20)
 );
 GO
+--
 ALTER TABLE Colector ADD abastece VARCHAR(5);
 GO
+--
 ALTER TABLE Colector ADD CONSTRAINT abastecimiento 
 FOREIGN KEY (abastece) REFERENCES Acumulador(ID_acumulador);
 GO
+--
 ALTER TABLE Acumulador ADD auxilio VARCHAR(5);
 GO
+--
 ALTER TABLE Acumulador ADD CONSTRAINT auxiliar FOREIGN KEY (auxilio)
 REFERENCES Caldera(ID_caldera);
+GO
+--
+--
+/*
+Creamos el trigger que diferencia los tipos de caldera:
+*/
+--
+CREATE OR ALTER TRIGGER biomasa ON Caldera
+AFTER INSERT,UPDATE AS IF((SELECT TOP 1 tipo_caldera FROM Caldera WHERE tipo_caldera IS NOT NULL
+ORDER BY tipo_caldera DESC) NOT IN ('biomasa','gas','electrica'))
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Sólo puedes insertar un valor de entre uno de los tres tipos de caldera que debes conocer...';
+END
 GO
 --
 CREATE TABLE Tecnico(
@@ -454,6 +471,31 @@ Go
 -- una columna de "orden de servicio":
 ALTER TABLE Tecnico ADD orden_servicio_tecnico VARCHAR(4);
 GO
+--
 ALTER TABLE Tecnico ADD CONSTRAINT trabajo FOREIGN KEY (orden_servicio_tecnico)
 REFERENCES PanelSolar(ID_panel);
 GO -- Éste es el panel que le toca instalar o mantener al técnico.
+/*
+Ahora sólo queda registrar un historial de actividad de los técnicos, y
+cualcular el precio final de la instalación. Ésto es; costes + mano de obra.
+La mano de obra del técnico suele ser un 33% del precio de la instalación.
+El precio total de la instalación sería +33% de la mano de obra del técnico.
+*/
+CREATE TABLE Actividad_tecnico
+(numero_actividad INT PRIMARY KEY NOT NULL, 
+panel_objeto VARCHAR(4) FOREIGN KEY REFERENCES PanelSolar(ID_panel),
+nombre_tecnico CHAR(20), primer_apellido_tecnico CHAR(20),
+segundo_apellido_tecnico CHAR(20),
+mano_obra MONEY,
+inicio_Actividad DATETIME2 GENERATED ALWAYS AS ROW START,
+fin_Seguimiento DATETIME2 GENERATED ALWAYS AS ROW END,
+PERIOD FOR SYSTEM_TIME (inicio_Actividad, fin_Seguimiento))
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.historial_tecnico));
+GO
+--Ahora, para calcular el precio de la mano de obra:
+ALTER TABLE Caldera ADD precio_caldera MONEY;
+ALTER TABLE Acumulador ADD precio_acumulador MONEY;
+ALTER TABLE Colector ADD precio_colector MONEY;
+ALTER TABLE Fotovoltaico ADD precio_fotovoltaico MONEY;
+Go
+--
