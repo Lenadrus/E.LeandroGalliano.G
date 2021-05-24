@@ -4,7 +4,7 @@ GO
 --Realizo la base de datos tomando de referencia el esquema relacional de mi proyecto:
 CREATE TABLE Cliente (DNI_cliente NVARCHAR(9) PRIMARY KEY NOT NULL,
 nombre_cliente CHAR(20), apellido1_cliente CHAR(20) NOT NULL,
-apellido2_cliente CHAR(20) NOT NULL, direccion_cliente VARCHAR(20) ,
+apellido2_cliente CHAR(20) NOT NULL, direccion_cliente VARCHAR(40) ,
 telefono_cliente NUMERIC(9) NOT NULL
 )
 GO
@@ -204,16 +204,15 @@ Será utilizada en el trigger:
 */
 CREATE OR ALTER TRIGGER clientePedido
 ON Cliente FOR INSERT
-AS BEGIN
-DECLARE @anzuelo INT; SET @anzuelo =(SELECT DISTINCT(FIRST_VALUE(ID_pedido) OVER(ORDER BY ID_pedido ASC))
-FROM pedidos)+1;
-INSERT INTO pedidos (ID_pedido,ID_cliente,ID_compra) VALUES 
-((@anzuelo),(SELECT * FROM pedidoCliente(1)),
-(SELECT DISTINCT(FIRST_VALUE(ID_panel) OVER (ORDER BY ID_panel ASC)) FROM PanelSolar
+AS 
+BEGIN
+DECLARE @anzuelo INT; 
+SET @anzuelo = (SELECT COUNT(ID_pedido) FROM Pedidos) + 1;
+INSERT INTO Pedidos(ID_pedido,ID_cliente,ID_compra) VALUES 
+((SELECT @anzuelo),(SELECT TOP 1 DNI_cliente FROM Cliente ORDER BY DNI_cliente DESC),
+(SELECT TOP 1 ID_panel FROM PanelSolar
 	WHERE tipo_panel IN (SELECT tipoPedido FROM Cliente)
-	AND ID_panel NOT IN (SELECT ID_compra FROM pedidos)
-	AND ID_panel NOT IN (SELECT ID_compra FROM historialPedidos)
-));
+ORDER BY ID_panel DESC));
 END
 GO
 /*
@@ -460,15 +459,18 @@ END
 GO
 --
 CREATE TABLE Tecnico(
-DNI_tecnico NVARCHAR(9) PRIMARY KEY NOT NULL,
 nombre_tecnico VARCHAR(20), primer_apellido_tecnico CHAR(20),
 segundo_apellido_tecnico CHAR(20),
 especialidad_tecnico CHAR(30),
 telefono_tecnico NUMERIC(9),
 mobil_tecnico NUMERIC(9));
 Go
--- Me interesa controlar qué panel tiene que instalar o mantener el técnico, para lo que creo
--- una columna de "orden de servicio":
+/*
+La PK del técnico puede ir vacía ya que, al insertar un nuevo panel. Inmediatamente
+se inserta éste en la columna "orden de servicio".
+Me interesa controlar qué panel tiene que instalar o mantener el técnico, para lo que creo
+una columna de "orden de servicio":
+*/
 ALTER TABLE Tecnico ADD orden_servicio_tecnico VARCHAR(4);
 GO
 --
@@ -477,7 +479,7 @@ REFERENCES PanelSolar(ID_panel);
 GO -- Éste es el panel que le toca instalar o mantener al técnico.
 /*
 Ahora sólo queda registrar un historial de actividad de los técnicos, y
-cualcular el precio final de la instalación. Ésto es; costes + mano de obra.
+calcular el precio final de la instalación. Ésto es; costes + mano de obra.
 La mano de obra del técnico suele ser un 33% del precio de la instalación.
 El precio total de la instalación sería +33% de la mano de obra del técnico.
 */
@@ -499,3 +501,124 @@ ALTER TABLE Colector ADD precio_colector MONEY;
 ALTER TABLE Fotovoltaico ADD precio_fotovoltaico MONEY;
 Go
 --
+ALTER TABLE Tecnico ADD mano_obra MONEY;
+ALTER TABLE Fotovoltaico ADD precio_Foto_intalacion MONEY;
+ALTER TABLE Colector ADD precio_Term_intalacion MONEY;
+--
+CREATE OR ALTER TRIGGER calcular_obra_fotovoltaica
+ON Fotovoltaico
+AFTER INSERT, UPDATE 
+AS IF ((SELECT TOP 1 precio_fotovoltaico FROM Fotovoltaico ORDER BY ID_fotovoltaico DESC) IS NOT NULL)
+BEGIN
+DECLARE @precio_bateria MONEY,@precio_fotovoltaico MONEY,
+@precioFotovoltaica MONEY, @mano_obra_fotovoltaica MONEY;
+SET @precio_bateria = (SELECT TOP 1 precio_bateria FROM Bateria ORDER BY ID_bateria DESC);
+SET @precio_fotovoltaico = (SELECT TOP 1 precio_fotovoltaico FROM Fotovoltaico
+WHERE ID_fotovoltaico NOT IN (SELECT DISTINCT(panel_objeto) FROM Actividad_tecnico)
+ORDER BY ID_fotovoltaico DESC);
+SET @precioFotovoltaica = @precio_bateria+@precio_fotovoltaico;
+SET @mano_obra_fotovoltaica = (33*@precioFotovoltaica)/100;
+UPDATE Tecnico SET mano_obra = (SELECT @mano_obra_fotovoltaica);
+UPDATE Fotovoltaico SET precio_Foto_intalacion = (SELECT @mano_obra_fotovoltaica)+(SELECT @precio_fotovoltaico)
+WHERE ID_fotovoltaico IN (SELECT TOP 1 ID_fotovoltaico FROM Fotovoltaico
+ORDER BY ID_fotovoltaico DESC);
+IF((SELECT ID_bateria FROM Bateria) IS NULL)
+	BEGIN
+	UPDATE Fotovoltaico SET precio_Foto_intalacion = ((33*@precio_fotovoltaico)/100)+@precio_fotovoltaico
+	WHERE ID_fotovoltaico IN (SELECT TOP 1 ID_fotovoltaico FROM Fotovoltaico
+	ORDER BY ID_fotovoltaico DESC);
+	END
+END
+Go
+--
+CREATE OR ALTER TRIGGER calcular_obra_colector
+ON Colector
+AFTER INSERT, UPDATE
+AS IF ((SELECT TOP 1 precio_colector FROM Colector ORDER BY ID_termico DESC) IS NOT NULL)
+BEGIN
+DECLARE @precio_caldera MONEY, @precio_acumualdor MONEY, @precio_colector MONEY,
+@precio_Termica MONEY, @mano_obra_colector MONEY;
+SET @precio_caldera = (SELECT TOP 1 precio_caldera FROM Caldera ORDER BY ID_caldera DESC);
+SET @precio_acumualdor = (SELECT TOP 1 precio_acumulador FROM Acumulador ORDER BY ID_acumulador DESC);
+SET @precio_colector = (SELECT TOP 1 precio_colector FROM Colector
+WHERE ID_termico NOT IN (SELECT DISTINCT(panel_objeto) FROM Actividad_tecnico)
+ORDER BY ID_termico DESC);
+SET @precio_Termica = @precio_caldera+@precio_acumualdor+@precio_colector;
+SET @mano_obra_colector = (33*@precio_Termica)/100;
+UPDATE Tecnico SET mano_obra = (SELECT @mano_obra_colector)
+UPDATE Colector SET precio_Term_intalacion = (SELECT @mano_obra_colector)+(SELECT @precio_Termica)
+WHERE ID_termico IN (SELECT TOP 1 ID_termico FROM Colector ORDER BY ID_termico DESC);
+END
+Go
+--
+/*
+Al insertar panel, se inserta en un futuro tecnico (ya que no hay PK en Tecnico):
+*/
+CREATE OR ALTER TRIGGER asignarTecnico
+ON PanelSolar
+AFTER INSERT
+AS
+BEGIN
+INSERT INTO Tecnico(orden_servicio_tecnico) VALUES (
+(SELECT TOP 1 ID_panel FROM PanelSolar
+WHERE ID_panel NOT IN (SELECT DISTINCT(orden_servicio_tecnico) FROM Tecnico)
+ORDER BY ID_panel DESC));
+END
+Go
+-- Al insertar un nuevo técnico, se registra la actividad:
+CREATE OR ALTER TRIGGER registrarActividad
+ON Tecnico
+AFTER INSERT
+AS
+BEGIN
+DECLARE @manoObra MONEY;
+IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
+IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'fotovoltaico'
+ORDER BY ID_panel DESC))
+BEGIN
+SET @manoObra = (SELECT TOP 1 precio_fotovoltaico 
+FROM Fotovoltaico ORDER BY ID_fotovoltaico DESC);
+END ELSE
+IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
+IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'termico'
+ORDER BY ID_panel DESC))
+BEGIN
+SET @manoObra = (SELECT TOP 1 precio_colector FROM Colector ORDER BY ID_termico DESC);
+END
+DECLARE @contarActividad INT;
+SET @contarActividad = (SELECT COUNT(numero_actividad) FROM Actividad_tecnico)  + 1;
+UPDATE Actividad_tecnico SET numero_actividad = (SELECT @contarActividad);
+UPDATE Actividad_tecnico SET panel_objeto = (
+SELECT DISTINCT(orden_servicio_tecnico) FROM Tecnico
+WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC))
+UPDATE Actividad_tecnico SET nombre_tecnico = (SELECT nombre_tecnico FROM Tecnico
+WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
+UPDATE Actividad_tecnico SET primer_apellido_tecnico = (SELECT TOP 1 primer_apellido_tecnico 
+FROM Tecnico ORDER BY orden_servicio_tecnico DESC);
+UPDATE Actividad_tecnico SET segundo_apellido_tecnico = (SELECT TOP 1 segundo_apellido_tecnico
+FROM Tecnico WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
+UPDATE Actividad_tecnico SET mano_obra = (SELECT @manoObra);
+END
+GO
+-- Falta calcular el precio total de la instalación. Se agrega en "pedidos":
+ALTER TABLE Pedidos ADD precio_instalacion MONEY;
+Go
+--
+ALTER TABLE PanelSolar DROP COLUMN precio_panel;
+/*
+Me queda la encriptación de datos que considere sensibles. Por lo que crearé
+un usuario ficticio que no pueda ver ciertos datos mediante el enmascaramiento
+y la encriptación.
+*/
+USE PanelesSolares_ELGG;
+CREATE USER Ficticius1 WITHOUT LOGIN;
+GRANT SELECT ON DATABASE::PanelesSolares_ELGG TO Ficticius1
+EXECUTE AS USER = 'Ficticius1';
+--REVERT;
+GO
+PRINT USER;
+GO
+SELECT * FROM PanelSolar;
+GO
+REVERT;
+GO
