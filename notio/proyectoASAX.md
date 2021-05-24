@@ -78,11 +78,21 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 <a name="defs"></a>
 ## Definiciones
 
-<a name="caldera">**Caldera**</a>
+**Caldera**
 
 Sistema auxiliar de calentamiento de agua para la tubería de salida final del Acumulador que consiste en una caldera
 clasificada según fuente de energía (biomasa, gas o electricidad).
 
-<a name="acumu">**Acumulador**</a>
+**Acumulador**
 
 Depósito de agua que es calentado por el agua del circuito cerrado con tubos de cobre que proviene del panel solar.
+
+**Sistema Térmico**
+
+El Sistema térmico en una instalación de colectores solares siempre requiere del Acumulador y la Caldera obligatoriamente. De
+lo contrario no funcionaría. Por lo que en la BD son Tablas importantes.
+
+**Sistema Eléctrico**
+
+El sistema eléctrico en una instalación de placas solares, la batería es un elemento opcional. La placa fotovoltaica puede
+enchufarse a cualquier electrodoméstico que con una potencia menor o igual a la que produce el panel.
