@@ -17,8 +17,6 @@
 
   - Código DQL.
 
-* [Aclaraciones](#acla)
-
 * [Definiciones](#defs)
 
 ##
