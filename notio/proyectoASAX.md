@@ -10,13 +10,12 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Código T-SQL original](../proyecto_LeandroGalliano.sql)
+* [Código T-SQL](../proyecto_LeandroGalliano.sql)
 
-  - Éste es el código original. Hay correcciones y todo está comentado.
-* [Código T-SQL resumido](../codigoResumido_proyecto_LeandroGalliano.sql)
+  - Código DDL y DML.
+* [Código T-SQL de pruebas a la BD](../consultas_BD-paneles.sql)
 
-  - Éste código es el resumido. Aquí sólo he pegado los trozos de código que crean todos los elementos de la BD,
-saltando correciones de código in situ.
+  - Código DQL.
 
 * [Aclaraciones](#acla)
 
