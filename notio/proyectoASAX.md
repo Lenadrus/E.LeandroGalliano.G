@@ -89,10 +89,8 @@ Depósito de agua que es calentado por el agua del circuito cerrado con tubos de
 
 **Sistema Térmico**
 
-El Sistema térmico en una instalación de colectores solares siempre requiere del Acumulador y la Caldera obligatoriamente. De
-lo contrario no funcionaría. Por lo que en la BD son Tablas importantes.
+El Sistema térmico en una instalación de colectores solares siempre requiere del Acumulador y la Caldera obligatoriamente. De lo contrario no funcionaría. Por lo que en la BD son Tablas importantes.
 
 **Sistema Eléctrico**
 
-El sistema eléctrico en una instalación de placas solares, la batería es un elemento opcional. La placa fotovoltaica puede
-enchufarse a cualquier electrodoméstico que con una potencia menor o igual a la que produce el panel.
+En el sistema eléctrico en una instalación de placas solares, la batería es un elemento opcional. La placa fotovoltaica puede enchufarse a cualquier electrodoméstico con una potencia menor o igual a la que produce el panel.
