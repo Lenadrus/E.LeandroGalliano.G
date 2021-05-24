@@ -12,7 +12,7 @@
 
 * [Código T-SQL de creacuón de la BD](../proyecto_LeandroGalliano.sql)
 
-  - Código DDL y DML.
+  - Código DDL + DML.
 * [Código T-SQL de pruebas a la BD](../consultas_BD-paneles.sql)
 
   - Código DQL.
