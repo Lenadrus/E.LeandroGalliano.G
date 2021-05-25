@@ -91,7 +91,7 @@ Cuando se inserta una nueva bateria, se activa el trigger que la relaciona con l
 
 En la Entidad "Tecnico", el atributo "orden_servicio_tecnico" es una FK que apunta a la PK "ID_panel" de la Entidad "PanelSolar".
 
-La Entidad "Pedidos" tiene dos FK; ID_compra, que apunta a la "ID_panel" de "PanelSolar", e "ID_cliente", que apunta al "DNI_cliente" de "Cliente".
+La Entidad "Pedidos" es una tabla temporal que tiene dos FK; ID_compra, que apunta a la "ID_panel" de "PanelSolar", e "ID_cliente", que apunta al "DNI_cliente" de "Cliente".
 
 "Acumulador" tiene la FK "auxilio" que apunta a la PK de "Caldera".
 
@@ -100,6 +100,9 @@ La Entidad "Pedidos" tiene dos FK; ID_compra, que apunta a la "ID_panel" de "Pan
 La FK "abastece" apunta a la PK de la Entidad "Acumulador".
 
 "Fotovoltaico" tiene una FK ("ID_fotovoltaico") que apunta a la PK de "PanelSolar".
+
+En el diagrama faltan una tabla temporal que no incluí porque no cabe en la imagen.
+La tabla temporal "Actividad_tecnico", que simplemente registra el panel y el nombre y apellidos del técnico.
 
 
 <a name="defs"></a>
