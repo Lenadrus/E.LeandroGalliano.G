@@ -24,8 +24,7 @@
 
 Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
 
-Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico](#diferencias)), 
-y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#diferencias)).
+Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico o placa solar](#diferencias)), y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#diferencias)).
 
 El **panel solar térmico** está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
@@ -44,7 +43,7 @@ Un acumulador es auxiliado por una caldera. Sólamente hay una caldera por insta
 Información detallada: [*Cómo funciona una instalación de paneles solares térmicos*](./expl/instalacionTermicaPaneles.md)
 
 
-El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería por panel fotovoltaico. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
+El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería por placa. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
 aparato electrodoméstico enchufable cuyos Watios de potencia requeridos no supere a los del panel.
 
 Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y la cantidad a instalar.
