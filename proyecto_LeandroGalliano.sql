@@ -568,36 +568,36 @@ Go
 -- Al insertar un nuevo técnico, se registra la actividad:
 CREATE OR ALTER TRIGGER registrarActividad
 ON Tecnico
-AFTER INSERT
+AFTER INSERT, UPDATE
 AS
 BEGIN
-DECLARE @manoObra MONEY;
-IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
-IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'fotovoltaico'
-ORDER BY ID_panel DESC))
-BEGIN
-SET @manoObra = (SELECT TOP 1 precio_fotovoltaico 
-FROM Fotovoltaico ORDER BY ID_fotovoltaico DESC);
-END ELSE
-IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
-IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'termico'
-ORDER BY ID_panel DESC))
-BEGIN
-SET @manoObra = (SELECT TOP 1 precio_colector FROM Colector ORDER BY ID_termico DESC);
-END
-DECLARE @contarActividad INT;
-SET @contarActividad = (SELECT COUNT(numero_actividad) FROM Actividad_tecnico)  + 1;
-UPDATE Actividad_tecnico SET numero_actividad = (SELECT @contarActividad);
-UPDATE Actividad_tecnico SET panel_objeto = (
-SELECT DISTINCT(orden_servicio_tecnico) FROM Tecnico
-WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC))
-UPDATE Actividad_tecnico SET nombre_tecnico = (SELECT nombre_tecnico FROM Tecnico
-WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
-UPDATE Actividad_tecnico SET primer_apellido_tecnico = (SELECT TOP 1 primer_apellido_tecnico 
-FROM Tecnico ORDER BY orden_servicio_tecnico DESC);
-UPDATE Actividad_tecnico SET segundo_apellido_tecnico = (SELECT TOP 1 segundo_apellido_tecnico
-FROM Tecnico WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
-UPDATE Actividad_tecnico SET mano_obra = (SELECT @manoObra);
+	DECLARE @manoObra MONEY;
+	IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
+	IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'fotovoltaico'
+	ORDER BY ID_panel DESC))
+		BEGIN
+			SET @manoObra = (SELECT TOP 1 precio_fotovoltaico 
+			FROM Fotovoltaico ORDER BY ID_fotovoltaico DESC);
+			END ELSE
+	IF ((SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC)
+	IN (SELECT TOP 1 ID_panel FROM PanelSolar WHERE tipo_panel LIKE 'termico'
+	ORDER BY ID_panel DESC))
+		BEGIN
+		SET @manoObra = (SELECT TOP 1 precio_colector FROM Colector ORDER BY ID_termico DESC);
+		END
+	DECLARE @contarActividad INT;
+		SET @contarActividad = (SELECT COUNT(numero_actividad) FROM Actividad_tecnico)  + 1;
+		UPDATE Actividad_tecnico SET numero_actividad = (SELECT @contarActividad);
+		UPDATE Actividad_tecnico SET panel_objeto = (
+		SELECT DISTINCT(orden_servicio_tecnico) FROM Tecnico
+		WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC))
+		UPDATE Actividad_tecnico SET nombre_tecnico = (SELECT nombre_tecnico FROM Tecnico
+		WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
+		UPDATE Actividad_tecnico SET primer_apellido_tecnico = (SELECT TOP 1 primer_apellido_tecnico 
+		FROM Tecnico ORDER BY orden_servicio_tecnico DESC);
+		UPDATE Actividad_tecnico SET segundo_apellido_tecnico = (SELECT TOP 1 segundo_apellido_tecnico
+		FROM Tecnico WHERE orden_servicio_tecnico IN (SELECT TOP 1 orden_servicio_tecnico FROM Tecnico ORDER BY orden_servicio_tecnico DESC));
+		UPDATE Actividad_tecnico SET mano_obra = (SELECT @manoObra);
 END
 GO
 -- Falta calcular el precio total de la instalación. Se agrega en "pedidos":
@@ -622,3 +622,89 @@ SELECT * FROM PanelSolar;
 GO
 REVERT;
 GO
+--
+--La instalación térmica siempre debe ser completa:
+ALTER TABLE Colector ALTER COLUMN abastece VARCHAR(5) NOT NULL;
+ALTER TABLE Acumulador ALTER COLUMN auxilio VARCHAR(5) NOT NULL;
+GO
+--
+-- Ahora altero las tablas que me interesan, enmascarando los datos que me interesan:
+ALTER TABLE Bateria ALTER COLUMN precio_bateria MONEY MASKED
+WITH (FUNCTION = 'default()');
+ALTER TABLE Bateria ALTER COLUMN tipo_bateria CHAR(20) MASKED
+WITH (FUNCTION = 'default()');
+SELECT * FROM Bateria;
+--ID_bateria	enchufe	tipo_bateria	precio_bateria
+--BAT01	A001	litio               	100,00
+EXECUTE AS USER = 'Ficticius1';PRINT USER;
+SELECT * FROM Bateria;
+GO
+--ID_bateria	enchufe	tipo_bateria	precio_bateria
+--BAT01	A001	litio               	0,00
+REVERT;
+ALTER TABLE Fotovoltaico ALTER COLUMN precio_fotovoltaico MONEY MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Fotovoltaico ALTER COLUMN ID_fotovoltaico VARCHAR(4) MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Fotovoltaico ALTER COLUMN precio_Foto_intalacion MONEY MASKED WITH(
+FUNCTION='default()');
+ALTER TABLE Fotovoltaico ALTER COLUMN modelo_fotovoltaico CHAR(20) MASKED WITH(
+FUNCTION = 'default()');
+EXECUTE AS USER = 'Ficticius1';
+SELECT * FROM Fotovoltaico;
+GO
+REVERT;
+GO
+ALTER TABLE Caldera ALTER COLUMN precio_caldera MONEY MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Caldera ALTER COLUMN tipo_caldera CHAR(20) MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Caldera ALTER COLUMN modelo_caldera CHAR(20) MASKED WITH(
+FUNCTION = 'default()');
+GO
+ALTER TABLE Acumulador ALTER COLUMN precio_acumulador MONEY MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Acumulador ALTER COLUMN modelo_acumulador CHAR(20) MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Acumulador ALTER COLUMN auxilio VARCHAR(5) MASKED WITH(
+FUNCTION = 'default()');
+GO
+ALTER TABLE Colector ALTER COLUMN precio_Term_intalacion MONEY MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Colector ALTER COLUMN precio_colector MONEY MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Colector ALTER COLUMN modelo_colector CHAR(20) MASKED WITH(
+FUNCTION = 'default()');
+ALTER TABLE Colector ALTER COLUMN abastece VARCHAR(5) MASKED WITH(
+FUNCTION = 'default()');
+GO
+EXECUTE AS USER = 'Ficticius1';
+SELECT * FROM Caldera;
+SELECT * FROM Acumulador;
+SELECT * FROM Colector;
+GO
+REVERT;
+/*
+Ahora corregiré una inserción en la BD que no había hecho antes. Que no se pueda
+insertar directamente en las subentidades "Colector" y "Fotovoltaico" (al fotovotlaico
+también puede llamarse le "placa"), ya que de eso se encarga la Entidad "panel solar".
+*/
+CREATE OR ALTER TRIGGER cuidarPlaca ON Fotovoltaico
+FOR INSERT
+AS
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Debes insertar la ID del panel y el tipo (fotovoltaico, o termico), en la tabla Panel Solar.';
+END
+GO
+--
+CREATE OR ALTER TRIGGER cuidarColector ON Colector
+FOR INSERT
+AS
+BEGIN
+ROLLBACK TRANSACTION;
+PRINT 'Debes insertar la ID del panel y el tipo (fotovoltaico, o termico), en la tabla Panel Solar.';
+END
+GO
+--
+ALTER TABLE Pedidos DROP COLUMN precio_instalacion; -- Es innecesario...
