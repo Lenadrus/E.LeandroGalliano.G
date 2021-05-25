@@ -10,10 +10,10 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Código T-SQL DDL + DML](../proyecto_LeandroGalliano.sql)
+* [Código T-SQL (DDL + DML)](../proyecto_LeandroGalliano.sql)
 
   - Código de creacuón de la BD.
-* [Código T-SQL DQL](../consultas_BD-paneles.sql)
+* [Código T-SQL (DQL)](../consultas_BD-paneles.sql)
 
   - Código de pruebas a la BD.
 
