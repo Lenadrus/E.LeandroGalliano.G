@@ -111,7 +111,7 @@ Así que la DDL debe de ser progresivamente gradual... :
 */
 DELETE FROM Colector;DELETE FROM Fotovoltaico;DELETE FROM PanelSolar;
 DELETE FROM Cliente;DELETE FROM Tecnico; DELETE FROM Pedidos;DELETE FROM Acumulador;
-DELETE FROM Caldera;DELETE FROM Bateria; -- Selecciono todo y lo ejecuto al menos 3 veces.
+DELETE FROM Caldera;DELETE FROM Bateria;DELETE FROM Actividad_tecnico; -- Selecciono todo y lo ejecuto al menos 3 veces.
 -- Voy insertando valores a medida que hay clientes.
 
 /*El siguiente cliente requiere un sistema de calefaccion para su hogar.
@@ -146,6 +146,8 @@ mobil_tecnico = 655223349
 WHERE orden_servicio_tecnico IN ('R001','R002','R003');
 SELECT * FROM Tecnico;
 GO
+SELECT * FROM Actividad_tecnico;
+GO
 --
 /*
 Ahora, quiero obtener el precio total real de la instalación:
@@ -159,3 +161,6 @@ SET @precio4 = (SELECT SUM(mano_obra) FROM Tecnico); -- Aquí no hago WHERE porqu
 DECLARE @precioTotal MONEY;
 SET @precioTotal = @precio1+@precio2+@precio3+@precio4;
 SELECT CONCAT(@precioTotal,'€') AS 'Precio total';
+--
+--Precio total
+--1275.60€
