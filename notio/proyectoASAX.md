@@ -87,8 +87,14 @@ Bateria tiene una "FK oculta" que en realidad apunta mediante un trigger a la FK
 Porque como se indicó en el enunciado, no es obligatorio que una placa esté conectada a la batería, sino que en su lugar
 puede ir cualquier electrodoméstico.
 Cuando se inserta una nueva bateria, se activa el trigger que la relaciona con la placa.
+"enchufe" de "Bateria" apunta a la PK de "PanelSolar".
 
 En la Entidad "Tecnico", el atributo "orden_servicio_tecnico" es una FK que apunta a la PK "ID_panel" de la Entidad "PanelSolar".
+
+La Entidad "Pedidos" tiene dos FK; ID_compra, que apunta a la "ID_panel" de "PanelSolar", e "ID_cliente", que apunta al "DNI_cliente" de "Cliente".
+
+Acumulador tiene la FK "auxilio" que apunta a la PK de "Caldera".
+
 
 <a name="defs"></a>
 ## Definiciones
