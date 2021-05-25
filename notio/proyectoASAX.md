@@ -82,10 +82,13 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 ![](https://www.mediafire.com/convkey/35e0/fipvv6lmnadbqw8zg.jpg)
 
-Bateria tiene una "FK oculta" que en realidad apunta mediante un trigger a la FK de la entidad débil "Fotovoltaico".
+Bateria tiene una "FK oculta" que en realidad apunta mediante un trigger a la FK de la entidad débil "Fotovoltaico"
+(ID_fotovoltaico).
 Porque como se indicó en el enunciado, no es obligatorio que una placa esté conectada a la batería, sino que en su lugar
-puede ir cualquier electrodoméstico. Pero el electrodoméstico es un elemento ajeno al conjunto de la instalación solar.
+puede ir cualquier electrodoméstico.
 Cuando se inserta una nueva bateria, se activa el trigger que la relaciona con la placa.
+
+En la Entidad "Tecnico", el atributo "orden_servicio_tecnico" es una FK que apunta a la PK "ID_panel" de la Entidad "PanelSolar".
 
 <a name="defs"></a>
 ## Definiciones
@@ -105,4 +108,4 @@ El Sistema térmico en una instalación de colectores solares siempre requiere d
 
 **Sistema Eléctrico**
 
-En el sistema eléctrico en una instalación de placas solares, la batería es un elemento opcional. La placa fotovoltaica puede enchufarse a cualquier electrodoméstico con una potencia menor o igual a la que produce el panel.
+En el sistema eléctrico en una instalación de placas solares, la batería es un elemento opcional. La placa fotovoltaica puede enchufarse a cualquier electrodoméstico con una potencia menor o igual a la que produce el panel. El electrodoméstico es un elemento ajeno al conjunto de la instalación solar.
