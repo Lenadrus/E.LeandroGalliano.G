@@ -28,9 +28,9 @@
 
 Se necesita la base de datos para una empresa que se dedica a la instalación y mantenimiento de paneles solares.
 
-Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico o placa solar](#diferencias)), y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#diferencias)).
+Existen dos tipos de paneles solares. Uno para el abastecimiento eléctrico (conocido como [panel solar fotovoltaico o placa solar](#defs)), y otro para el abastecimiento térmico (conocido como [panel solar térmico o colector solar](#defs)).
 
-El **panel solar térmico** está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#acumu) 
+El **panel solar térmico** está compuesto por unas tuberías (las que conforman el circuito hidráulico), un [acumulador](#defs) 
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
 Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el codigo que lo identifica
@@ -107,6 +107,19 @@ La tabla temporal "Actividad_tecnico", que simplemente registra el panel y el no
 
 <a name="defs"></a>
 ## Definiciones
+
+**Panel solar térmico**
+
+Es un panel solar hecho con tubos de cobre instalados sobre una superficie rectangular siguiendo una ruta 
+en forma de 'S' o de 'T' según su distribución (en serie o en paralelo), recubiertos con un material especial
+que captar el calor del sol para calentar el agua que pasa por ellos. Son también conocidos como "Colectores solares",
+y puden ser de uso doméstico.
+
+**Panel solar fotovoltaico**
+
+Es un panel solar hecho con unas láminas (conocidas como células fotovoltaicas) que reaccionan ante el choque de los
+fotones de luz procedientes de sol, produciendo un flujo de electrones.
+También son conocidos como placas solares.
 
 **Caldera**
 
