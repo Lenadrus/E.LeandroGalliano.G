@@ -102,7 +102,7 @@ La FK "abastece" apunta a la PK de la Entidad "Acumulador".
 "Fotovoltaico" tiene una FK ("ID_fotovoltaico") que apunta a la PK de "PanelSolar".
 
 En el diagrama faltan una tabla temporal que no incluí porque no cabe en la imagen.
-La tabla temporal "Actividad_tecnico", que simplemente registra el panel y el nombre y apellidos del técnico.
+La tabla temporal "Actividad_tecnico", que simplemente registra el panel, el nombre y apellidos del técnico.
 
 
 <a name="defs"></a>
