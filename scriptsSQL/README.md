@@ -31,8 +31,3 @@ __Listados por fecha de subida a ["la nube"](https://www.mediafire.com/folder/so
 * [InMemoryTable](./In_memory_Table_Clase.sql)
 
 * [EjemploTablasTemporalesVstream](./Ejemplo_Tablas_Temporales_v_Sistema.sql)
-
-
-
-
-### Scripts propios para la clase
