@@ -93,7 +93,11 @@ En la Entidad "Tecnico", el atributo "orden_servicio_tecnico" es una FK que apun
 
 La Entidad "Pedidos" tiene dos FK; ID_compra, que apunta a la "ID_panel" de "PanelSolar", e "ID_cliente", que apunta al "DNI_cliente" de "Cliente".
 
-Acumulador tiene la FK "auxilio" que apunta a la PK de "Caldera".
+"Acumulador" tiene la FK "auxilio" que apunta a la PK de "Caldera".
+
+"Colector" tiene dos FKs, la FK "ID_termico" apunta a "ID_panel" de "PanelSoar" cuando "tipo_panel" tiene el valor de
+"termico". Ésto se relaciona mediante un trigger que detecta el tipo de panel para insertar la FK en el Colector.
+La FK "abastece" apunta a la PK de la Entidad "Acumulador".
 
 
 <a name="defs"></a>
