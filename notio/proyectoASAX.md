@@ -99,6 +99,8 @@ La Entidad "Pedidos" tiene dos FK; ID_compra, que apunta a la "ID_panel" de "Pan
 "termico". Ésto se relaciona mediante un trigger que detecta el tipo de panel para insertar la FK en el Colector.
 La FK "abastece" apunta a la PK de la Entidad "Acumulador".
 
+"Fotovoltaico" tiene una FK ("ID_fotovoltaico") que apunta a la PK de "PanelSolar".
+
 
 <a name="defs"></a>
 ## Definiciones
