@@ -15,7 +15,7 @@
   - Código de creacuón de la BD.
 * [Código T-SQL (DQL)](../consultas_BD-paneles.sql)
 
-  - Código de pruebas a la BD.
+  - Código de pruebas de consulta a la BD.
 
 * [Definiciones](#defs)
 
