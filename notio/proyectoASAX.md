@@ -17,6 +17,10 @@
 
   - Código de pruebas de consulta a la BD.
 
+* [Diagrama relacional](#diagram)
+
+  - Obtenido desde el SSMS.
+
 * [Definiciones](#defs)
 
 ##
@@ -73,6 +77,15 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 [<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/convkey/88eb/sbw99v97hxjcpvdzg.jpg)
 
+
+<a name="diagram">Diagrama relacional</a>
+
+![](https://www.mediafire.com/convkey/35e0/fipvv6lmnadbqw8zg.jpg)
+
+Bateria tiene una "FK oculta" que en realidad apunta mediante un trigger a la FK de la entidad débil "Fotovoltaico".
+Porque como se indicó en el enunciado, no es obligatorio que una placa esté conectada a la batería, sino que en su lugar
+puede ir cualquier electrodoméstico. Pero el electrodoméstico es un elemento ajeno al conjunto de la instalación solar.
+Cuando se inserta una nueva bateria, se activa el trigger que la relaciona con la placa.
 
 <a name="defs"></a>
 ## Definiciones
