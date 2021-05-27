@@ -75,7 +75,7 @@ Un técnico puede instalar uno o varios paneles solares. Un panel solar sólamen
 
 <a name="grafoRel">**Grafo relacional**</a>
 
-[<img src="https://www.mediafire.com/convkey/a288/5z5ysnqwxf4yicazg.jpg" alt="grafoRelacional" width="350px" height="350px"/>](https://www.mediafire.com/view/sbw99v97hxjcpvd)
+[<img src="https://www.mediafire.com/view/sbw99v97hxjcpvd" alt="grafoRelacional" width="350px" height="350px"/>]()
 
 
 <a name="diagram">Diagrama relacional</a>
