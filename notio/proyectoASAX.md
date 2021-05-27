@@ -10,9 +10,9 @@
 
 * [Grafo relacional](#grafoRel)
 
-* [Diagrama relacional](#diagram)
+* [Diagrama relacional (explicado)](#diagram)
 
-  - Obtenido desde el SSMS. Se explica el diagrama.
+  - Obtenido desde el SSMS.
 
 * [Código T-SQL (DDL + DML)](../proyecto_LeandroGalliano.sql)
 
