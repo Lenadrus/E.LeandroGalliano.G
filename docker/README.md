@@ -8,7 +8,7 @@ Aquí dispongo los apuntes de Docker de clase.
 
 * [Uso de Docker (comandos)](#usoDocker)
 
-* [Instalando docker en Ubuntu](#instalar)
+* [Instalando Docker en Ubuntu](#instalar)
 
 #
 ### <a name="nocion">Sobre Docker</a>
@@ -55,3 +55,23 @@ Los contenedores se identifican por un identificador "bash".
 
 - `Docker inspect [OPCIONES] <identificador>` : Muestra información detallada sobre la imagen.
 
+
+### Instalación de Docker en Ubuntu
+
+Ésta información la he obtenido con ayuda de la [documentación de Docker](https://docs.docker.com/engine/install/ubuntu/).
+
+Abrir la terminal de Ubuntu (atajo del teclado: CTRL+ALT+T), y seguir los siguientes pasos:
+
+**Pasos:**
+
+1. Actualizar el repositorio APT: `sudo apt-get update`
+
+2. Instalar las herramientas que permiten a APT utilizar su repositorio a través de HTTPS:
+```
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
