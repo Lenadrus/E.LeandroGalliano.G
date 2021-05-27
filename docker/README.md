@@ -79,3 +79,10 @@ sudo apt-get install \
 3. Agregar la llave GPG oficial de docker:
 
 ` curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+
+4. Instalar el motor de Docker:
+
+```
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
