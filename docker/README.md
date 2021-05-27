@@ -55,8 +55,8 @@ Los contenedores se identifican por un identificador "bash".
 
 - `Docker inspect [OPCIONES] <identificador>` : Muestra información detallada sobre la imagen.
 
-
-### <a name="intalar">Instalación de Docker en Ubuntu</a>
+<a name="instalar"></a>
+### Instalación de Docker en Ubuntu
 
 Ésta información la he obtenido con ayuda de la [documentación de Docker](https://docs.docker.com/engine/install/ubuntu/).
 
