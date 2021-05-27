@@ -34,5 +34,5 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
 
 `<imagen>`: El nombre de la imagen. Puede ser "ubuntu", "mysql", "debian", etc.
 
-`<tag>` : Etiqueta que es de uso opcional. Si el comando "pull" se ejecuta sin ésta etiqueta, entonces se descarga la                 versión más reciente. Ésta `<tag>` sirve para especificar una versión válida de aquello que queremos virtualizar.
+`<tag>` : Etiqueta que es de uso opcional. Si el comando "pull" se ejecuta sin ésta etiqueta, entonces se utiliza la                 versión más reciente. Ésta `<tag>` sirve para especificar una versión válida de aquello que queremos virtualizar.
 
