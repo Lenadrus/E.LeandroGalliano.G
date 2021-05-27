@@ -8,6 +8,8 @@ Aquí dispongo los apuntes de Docker de clase.
 
 * [Uso de Docker (comandos)](#usoDocker)
 
+· [Instalando docker en Ubuntu](#instalar)
+
 #
 ### <a name="nocion">Sobre Docker</a>
 
