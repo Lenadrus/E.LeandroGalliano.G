@@ -23,7 +23,7 @@ Para los almacenados en la nube, se reserva el término "Storage", mientras que 
 
 La imágen puede descargarse o crearse mediante un comando reservado (se explica más adelante).
 
-### Comandos de Docker
+### <a name="usoDocker">Comandos de Docker</a>
 
 `docker version` : Obtiene la versión de docker que se esté utilizando, entre otros detalles como el Sistema Operativo en el                    que se ejecuta.
 
