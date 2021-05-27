@@ -94,3 +94,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 ### <a name="persistente">Volumen persistente</a>
 
+Cuando detenemos una imagen que hemos estado utilizando. Los cambios que hemos efectuado en ella, se eliminan. Ésto ocurre tanto al detener la imágen como al eliminarla.
+Por ejemplo, si en mi contenedor tengo Mysql y en él tengo una base de datos en la que he estado trabajando, detengo ésta imagen. Tras detenerla he eliminado todo el progreso.
+
+Para evitar éste problema, existe en Docker una funcionalidad denominada "Volumen persistente". Ésto permite 
