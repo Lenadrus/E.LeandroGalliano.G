@@ -51,4 +51,5 @@ Los contenedores se identifican por un identificador "bash".
 
 - `docker start <identificador>` : Inicia o arranca una imagen almacenada (que no está en ejecución), que cumpla con el identificador que se le pasa por parámetro al comando.
 
-- `Docker inspect` :  
+- `Docker inspect [OPCIONES] <identificador>` : Muestra información detallada sobre la imagen.
+
