@@ -10,7 +10,7 @@ Aquí dispongo los apuntes de Docker de clase.
 
 * [Instalando Docker en Ubuntu](#instalar)
 
-* [Volumen persistente:¡Cuidado al detener una imagen!](#persistente)
+* [Volumen persistente. ¡Cuidado al detener una imagen!](#persistente)
 
 #
 ### <a name="nocion">Sobre Docker</a>
