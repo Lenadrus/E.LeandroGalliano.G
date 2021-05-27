@@ -91,3 +91,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 5. Finalmente comprueba que Docker se ha instalado correctamente, ejecutando:
 
 ` sudo docker run hello-world`
+
+### <a name="persistente">Volumen persistente</a>
+
