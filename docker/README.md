@@ -25,7 +25,7 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
 
 ### Comandos de Docker
 
-`docker version` : Obtiene la versión de docker que se utilizando, entre otros detalles como el Sistema Operativo en el que se ejecuta.
+`docker version` : Obtiene la versión de docker que se esté utilizando, entre otros detalles como el Sistema Operativo en el que se ejecuta.
 
 `docker --help` : Muestra la lista de comandos-parámetro válidos para utilizar docker, expondiendo la sintaxis de uso:
 `docker [OPCIONES] COMANDO` .
