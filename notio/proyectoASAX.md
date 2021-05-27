@@ -10,16 +10,16 @@
 
 * [Grafo relacional](#grafoRel)
 
+* [Diagrama relacional](#diagram)
+
+  - Obtenido desde el SSMS. Se explica el diagrama.
+
 * [Código T-SQL (DDL + DML)](../proyecto_LeandroGalliano.sql)
 
   - Código del proceso de creación de la BD.
 * [Código T-SQL (DQL)](../consultas_BD-paneles.sql)
 
   - Código de pruebas de consulta a la BD.
-
-* [Diagrama relacional](#diagram)
-
-  - Obtenido desde el SSMS.
 
 * [Definiciones](#defs)
 
