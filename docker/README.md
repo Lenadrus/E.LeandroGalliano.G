@@ -18,11 +18,12 @@ La palabra "Docker" proviene de "Dock" (puerto) y significa "cargar".
 La idea principal de Docker es la creación de imágenes en contenedores.
 
 Los contenedores pueden almacenarse en la nube o de manera local.
-Para el almacenamiento de contenedores en la nube, existe un sistema de control de versiones online similar a GitHub pero
-orientado a Docker; [DockerHub](https://hub.docker.com).
+Para el almacenamiento de contenedores en la nube, existe un sistema Web de control de versiones similar a [GitHub](https://github.com) pero orientado a Docker; [DockerHub](https://hub.docker.com).
 
 La imágen puede descargarse o crearse mediante un comando reservado (se explica más adelante).
 
 ### Comandos de Docker
 
-`docker version` : Obtiene
+`docker version` : Obtiene la versión de docker que se utilizando.
+
+``: 
