@@ -98,3 +98,5 @@ Cuando detenemos una imagen que hemos estado utilizando. Los cambios que hemos e
 Por ejemplo, si en mi contenedor tengo Mysql y en él tengo una base de datos en la que he estado trabajando, detengo ésta imagen. Tras detenerla he eliminado todo el progreso.
 
 Para evitar éste problema, existe en Docker una funcionalidad denominada "Volumen persistente". Ésto permite 
+reservar parte de la capacidad de almacenamiento de nuestro disco, para guardar snapshots de nuestro contenedor.
+
