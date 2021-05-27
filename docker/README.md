@@ -19,7 +19,7 @@ La idea principal de Docker es la creación de imágenes en contenedores.
 
 Los contenedores pueden almacenarse en la nube o de manera local.
 Para el almacenamiento de contenedores en la nube, existe un sistema Web de control de versiones similar a [GitHub](https://github.com) pero orientado a Docker; [DockerHub](https://hub.docker.com).
-Para los almacenados en la nube, se reserva el término "Storage", mientras que para los almacenados en local, se reserva el térmico "Registry".
+Para los almacenados en la nube, se reserva el término "Storage", mientras que para los almacenados en local, se reserva el término "Registry".
 
 La imágen puede descargarse o crearse mediante un comando reservado (se explica más adelante).
 
