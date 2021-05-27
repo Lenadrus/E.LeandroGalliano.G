@@ -34,7 +34,7 @@ El **panel solar térmico** está compuesto por unas tuberías (las que conforma
 (el que almacena agua) y una caldera (la que sirve como sistema auxiliar de calentamiento).
 
 Del panel solar térmico, es necesario guardar la longitud total de las tuberías (en metros), el codigo que lo identifica
-y la cantidad a instalar.
+y el precio.
 
 Del acumulador al que abastece, es necesario guardar el código, capacidad (volumen de acumulación de agua) marca y modelo, así como también los de la caldera (y además, la caldera se clasifica por tipo).
 
@@ -50,7 +50,7 @@ Información detallada: [*Cómo funciona una instalación de paneles solares té
 El **panel solar fotovoltaico** está compuesto por una batería, un inversor y un regulador. Ésto significa que hay una batería por placa. Pero la batería no es un componente obligatorio. En lugar de la batería, puede ir cualquier
 aparato electrodoméstico enchufable cuyos Watios de potencia requeridos no supere a los del panel.
 
-Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y la cantidad a instalar.
+Del panel fotovoltaico se requiere guardar la potencia (en Watios), código que lo identifica y el precio.
 
 De la batería se requiere el tipo (plomo-ácido o ion-litio) y el código que la identifica.
 
