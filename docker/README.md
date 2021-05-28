@@ -36,7 +36,9 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
 - `docker --help` : Muestra la lista de comandos-parámetro válidos para utilizar docker, expondiendo la sintaxis de uso:
                   `docker [OPCIONES] COMANDO` .
 
-- `docker pull <imagen> <tag>`  : `docker pull` "tira" de una imágen o un repositorio localizado un registro (Registry; se                                      refiere al almacenamiento local).
+- `docker push <imagen>:<tag>` : "descarga" una imagen publicada en el DockerHub a un nuevo Registry.
+
+- `docker pull <imagen>:<tag>`  : "tira" de una imágen o un repositorio localizado en un Registry,
 
 · `<imagen>`: El nombre de la imagen. Puede ser "ubuntu", "mysql", "debian", etc.
 
