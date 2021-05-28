@@ -43,9 +43,9 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
 
 - `docker pull <imagen>:<tag>`  : "tira" de una imágen o un repositorio localizado en un Registry,
 
- - `<imagen>`: El nombre de la imagen. Puede ser "ubuntu", "mysql", "debian", etc.
+- - `<imagen>`: El nombre de la imagen. Puede ser "ubuntu", "mysql", "debian", etc.
 
- - `<tag>` : Etiqueta que es de uso opcional. Si el comando "pull, push, run, etc" se ejecutan sin ésta etiqueta, entonces                se utiliza la versión más reciente. Ésta `<tag>` sirve para especificar una versión válida de   aquello que                  queremos virtualizar.
+- - `<tag>` : Etiqueta que es de uso opcional. Si el comando "pull, push, run, etc" se ejecutan sin ésta etiqueta, entonces                se utiliza la versión más reciente. Ésta `<tag>` sirve para especificar una versión válida de   aquello que                  queremos virtualizar.
 
 - `docker run --name <nombreNuevoContenedor> -it <imagen>:<tag>` : Crea un nuevo contenedor. `:<tag>` es opcional.
                                                                    `-it` indica a Docker de colocar una pseudo-TTY conectada
