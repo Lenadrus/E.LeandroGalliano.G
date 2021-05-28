@@ -51,6 +51,8 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
                                                                    `-it` indica a Docker de colocar una pseudo-TTY conectada
                                                                     al stdin del contenedor.
 
+- `docker exec [OPCION] <contenedor> [COMANDO]` : Ejecuta un nuevo comando en un contenedor. Sirve para "meterse" al                                                           contenedor y empezar a ejecutar comandos propios del contenedor.
+
 - `docker <imagen>` : Muestra información sobre la imagen.
 
 - `docker rm <imagen>` : Elimina la imagen.
