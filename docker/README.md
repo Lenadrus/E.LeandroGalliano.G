@@ -157,7 +157,7 @@ Primero utilizo `docker ps -a` para comprobar que no tengo ninguna imagen o cont
 
 Busco imágenes relacionadas con "mysql" con el comando `docker search mysql`.
 
-<img src="https://imgshare.io/images/2021/05/27/a2.png" alt="" width="600px" height="350px"/>
+<img src="https://imgshare.io/images/2021/05/27/a2.png" alt="" width="700px" height="400px"/>
 
 Utilizo `docker push mysql` para obtener la imágen oficial de mysql. Pero Docker me notifica que no tengo ninguna imagen local con el tag de mysql. Así que utilizo `docker pull mysql` para descargar la última versión de mysql.
 
