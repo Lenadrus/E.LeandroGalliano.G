@@ -160,3 +160,7 @@ Busco imágenes relacionadas con "mysql" con el comando `docker search mysql`.
 Utilizo `docker push mysql` para obtener la imágen oficial de mysql. Pero Docker me notifica que no tengo ninguna imagen local con el tag de mysql. Así que utilizo `docker pull mysql` para descargar la última versión de mysql.
 
 ![](https://imgshare.io/images/2021/05/27/a3.png)
+
+Ahora ya puedo ejecutar `docker run --name conMysql -e MYSQL_ROOT_PASSWORD=Abcd1234. -it mysql` para crear un nuevo contenedor. No lo ejecuto con `detach` de momento:
+
+![](https://imgshare.io/images/2021/05/27/a4.png)
