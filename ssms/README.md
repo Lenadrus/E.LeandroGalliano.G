@@ -1,5 +1,5 @@
 ## Sobre AdventureWorks2017
-#
+
 * [Particiones (table partitions)]()
 
 * [Tablas Temporales]()
