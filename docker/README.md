@@ -113,9 +113,9 @@ docker run -d \
 <imagen>:<tag>
 ```
 #
-Ejemplo de uso del parámetro *-p*: `-p 8080:8080`
+Ejemplo de uso del parámetro *-p* : `-p 8080:8080`
 #
-Ejemplo de uuso del parámetro *-e*: `-e MYSQL_ROOT_PASSWORD=Abcd1234.`
+Ejemplo de uuso del parámetro *-e* : `-e MYSQL_ROOT_PASSWORD=Abcd1234.`
 #
-
+*-v* es el parámetro que indica el volumen. *-v* de "volume". Entonces el volumen, es el directorio en el que decido que se encuentra mi volumen (debe de ser obligatoriamente una carpeta creada por mí mismo para guardar allí el volumen), mapeado a la ruta. Por ejemplo: `-v volumen_mysql:/var/lib/mysql`
 #
