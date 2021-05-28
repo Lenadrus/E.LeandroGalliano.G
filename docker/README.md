@@ -151,7 +151,7 @@ docker run -d -v <nombreVolumen>:<contenedorDirectorio>
 
 Primero utilizo `docker ps` para comprobar que no tengo ninguna imagen o contenedor.
 
-![](https://imgshare.io/images/2021/05/27/a1.png)
+![](https://imgshare.io/images/2021/05/27/a160d54014e2d5bc84.png)
 
 Busco imágenes relacionadas con "mysql" con el comando `docker search mysql`.
 
