@@ -44,6 +44,10 @@ La imágen puede descargarse o crearse mediante un comando reservado (se explica
 
 · `<tag>` : Etiqueta que es de uso opcional. Si el comando "pull" se ejecuta sin ésta etiqueta, entonces se utiliza la                 versión más reciente. Ésta `<tag>` sirve para especificar una versión válida de aquello que queremos virtualizar.
 
+- `docker run --name <nombreNuevoContenedor> -it <imagen>:<tag>` : Crea un nuevo contenedor. `:<tag>` es opcional.
+                                                                   `-it` indica a Docker de colocar una pseudo-TTY conectada
+                                                                    al stdin del contenedor.
+
 
 - `docker <imagen>` : Muestra información sobre la imagen.
 
