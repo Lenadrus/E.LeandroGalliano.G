@@ -171,6 +171,8 @@ Compruebo que el contenedor está en ejecución `docker ps -a`, a pesar de haber
 
 ![](https://imgshare.io/images/2021/05/27/a5.png)
 
-<a name="exec">Utilizo</a> el contenedor para empezar a trabajar con él mediant el comando `docker exec -it <ID> bash`:
+<a name="exec">Utilizo</a> el contenedor para empezar a trabajar con él mediante el comando `docker exec -it <ID> bash`:
 
 ![](https://imgshare.io/images/2021/05/27/a6.png)
+
+Puede apreciarse que he iniciado una sesión Bash, y que puedo listar el directorio root ('\\') del contenedor "conMysql".
