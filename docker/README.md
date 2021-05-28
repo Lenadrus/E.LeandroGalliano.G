@@ -185,3 +185,12 @@ Ahora inicio mysql server y creo una base de datos `pruebaLeandro` a través de 
 Cuando cierro `docker stop <ID>` éste contenedor. Los datos se perderán. Por lo que tendré que crear un volumen persistente:
 
 ![](https://imgshare.io/images/2021/05/27/a8.png)
+
+Compruebo que los datos se pierden:
+
+![](https://imgshare.io/images/2021/05/27/a9.png)
+
+Sopresivamente la Base de Datos de prueba que he creado sigue allí, a pesar de haber detenido la imagen.
+El motivo lo encuentro haciendo `docker inspect conMysql`, donde obtendo que en realidad ya hay un volumen:
+
+![](https://imgshare.io/images/2021/05/27/b1.png) línea "Volumes" al final de la imágen PNG.
