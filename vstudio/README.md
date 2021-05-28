@@ -1,6 +1,6 @@
 ### Visual Studio Code
 
-#### Indice
+#### Índice
 
 * [Instalación en Ubuntu 18](#insta)
 
