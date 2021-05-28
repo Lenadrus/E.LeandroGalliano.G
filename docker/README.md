@@ -181,3 +181,7 @@ Puede apreciarse que he iniciado una sesión Bash, y que puedo listar el directo
 Ahora inicio mysql server y creo una base de datos `pruebaLeandro` a través de `mysql -u root -p`:
 
 ![](https://imgshare.io/images/2021/05/27/a7.png)
+
+Cuando cierro `docker stop <ID>` éste contenedor. Los datos se perderán. Por lo que tendré que crear un volumen persistente:
+
+![](https://imgshare.io/images/2021/05/27/a8.png)
