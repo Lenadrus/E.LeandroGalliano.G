@@ -196,7 +196,7 @@ Compruebo que los datos se pierden:
 
 Ya había un volumen local, así que he tenido que borrar el volumen mediante `docker volume prune` .
 
-Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . Elimino el contenedor y lo vuelvo a crear con éste nuevo volumen:
+Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . Elimino el contenedor `docker rm <ID_cont>` y lo vuelvo a crear con éste nuevo volumen:
 
 ![](https://imgshare.io/images/2021/05/27/b2.png)
 
