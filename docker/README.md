@@ -102,3 +102,20 @@ Por ejemplo, si en mi contenedor tengo Mysql y en él tengo una base de datos en
 Para evitar éste problema, existe en Docker una funcionalidad denominada "Volumen persistente". Ésto permite 
 reservar parte de la capacidad de almacenamiento de nuestro disco, para guardar snapshots de nuestro contenedor.
 
+Para crear un volumen, durante la creación de un contenedor:
+
+```
+docker run -d \
+--name <nombreNuevoContenedor> \
+-p <numPuertuLocal>:<numPuertoContenedor>
+-e <variableEntorno> \
+-v <directorio>:<ruta> \
+<imagen>:<tag>
+```
+#
+Ejemplo de uso del parámetro *-p*: `-p 8080:8080`
+#
+Ejemplo de uuso del parámetro *-e*: `-e MYSQL_ROOT_PASSWORD=Abcd1234.`
+#
+
+#
