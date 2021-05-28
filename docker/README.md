@@ -176,3 +176,8 @@ Compruebo que el contenedor está en ejecución `docker ps -a`, a pesar de haber
 ![](https://imgshare.io/images/2021/05/27/a6.png)
 
 Puede apreciarse que he iniciado una sesión Bash, y que puedo listar el directorio root ('\\') del contenedor "conMysql".
+
+
+Ahora inicio mysql server y creo una base de datos `pruebaLeandro` a través de `mysql -u root -p`:
+
+![](https://imgshare.io/images/2021/05/27/a7.png)
