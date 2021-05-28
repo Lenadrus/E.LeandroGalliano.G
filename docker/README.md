@@ -164,3 +164,7 @@ Utilizo `docker push mysql` para obtener la imágen oficial de mysql. Pero Docke
 Ahora ya puedo ejecutar `docker run --name conMysql -e MYSQL_ROOT_PASSWORD=Abcd1234. -it mysql` para crear un nuevo contenedor. No lo ejecuto con `detach` de momento:
 
 ![](https://imgshare.io/images/2021/05/27/a4.png)
+
+Compruebo que el contenedor está en ejecución `docker ps -a`, a pesar de haber cerrado la terminal tras haber cambiado de decisión de no haber utilizado `detach`:
+
+![](https://imgshare.io/images/2021/05/27/a5.png)
