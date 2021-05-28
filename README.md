@@ -10,4 +10,4 @@
 
 * [Docker](./docker/README.md)
 
-* [VMware WorkStation](./vmware)
+* [VMware WorkStation](./vmware/README.md)
