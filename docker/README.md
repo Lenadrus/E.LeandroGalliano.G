@@ -1,6 +1,6 @@
 # Apuntes Docker
 
-Aquí dispongo los apuntes de Docker de clase.
+Aquí dispongo los apuntes de Docker de clase y trabajo propio.
 
 ## Contenido
 
