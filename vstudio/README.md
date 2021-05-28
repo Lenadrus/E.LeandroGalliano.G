@@ -2,6 +2,6 @@
 
 #### Indice
 
-* [Instalación en Ubuntu 18]()
+* [Instalación en Ubuntu 18](#insta)
 
-* [Utilización básica]()
+* [Utilización básica](#utili)
