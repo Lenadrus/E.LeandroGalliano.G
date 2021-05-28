@@ -128,5 +128,19 @@ Ejemplo de uuso del parámetro *-e* : `-e MYSQL_ROOT_PASSWORD=Abcd1234.`
 *-v* es el parámetro que indica el volumen. *-v* de "volume". Entonces el volumen, es el directorio en el que decido que se encuentra mi persistente (debe de ser obligatoriamente una carpeta creada por mí mismo para guardar allí el volumen), mapeado a la ruta. Por ejemplo: `-v volumen_mysql:/var/lib/mysql`
 #
 
+Crear primero el volumen y después configurar el contenedor para utilizar al volumen:
+
+```
+docker volume create <nombreVolumen>
+<nombreVolumen>
+```
+
+Con el comando `docker volume ...` he creado el volumen.
+
+```
+docker run -d -v <nombreVolumen>:<contenedorDirectorio>
+```
+
+<contenedorDirectorio> es el directorio del contenedor al que deseo mapear el nuevo volumen.
 
 ### <a name="usoDock">Utilizando Docker para pruebas de ejemplo.</a>
