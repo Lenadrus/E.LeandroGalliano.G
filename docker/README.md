@@ -209,4 +209,16 @@ Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al 
 
 ### <a name="dock">dockerfile</a>
 
+<p style="color:red">Me he valido de ayuda de la [documentación oficial](https://docs.docker.com/engine/reference/builder/) para redactar éste texto.</p>
+
+Docker es capaz de countruír imágenes automáticamente mediante la lectura de instrucciones de un archivo de docker; un *dockerfile*.
+
+*dockerfile* es un documento de texto en el que se definen todos los comandos que puede utilizar el usuario para ensamblar una imágen.
+
+*dockerfile* se utiliza mediante un comando especial reservado para interactuar con él: `docker build [CONTEXTO]` . Donde "`[CONTEXTO]`"
+es el conjunto de archivos en una ruta en concreto. Con `docker build` construímos una imágen localizada en un archivo docker.
+
+
+
+
 ### <a name="mul">docker-compose</a>
