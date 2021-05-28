@@ -161,41 +161,41 @@ Busco imágenes relacionadas con "mysql" con el comando `docker search mysql`.
 
 Utilizo `docker push mysql` para obtener la imágen oficial de mysql. Pero Docker me notifica que no tengo ninguna imagen local con el tag de mysql. Así que utilizo `docker pull mysql` para descargar la última versión de mysql.
 
-![<img src="https://imgshare.io/images/2021/05/27/a3.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a3.png)
+<img src="https://imgshare.io/images/2021/05/27/a3.png" alt="" width="700px" height="400px"/>]
 
 Ahora ya puedo ejecutar `docker run --name conMysql -e MYSQL_ROOT_PASSWORD=Abcd1234. -it mysql` para crear un nuevo contenedor. No lo ejecuto con `detach` de momento:
 
-![<img src="https://imgshare.io/images/2021/05/27/a4.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a4.png)
+<img src="https://imgshare.io/images/2021/05/27/a4.png" alt="" width="700px" height="400px"/>]
 
 Compruebo que el contenedor está en ejecución `docker ps -a`, a pesar de haber cerrado la terminal tras haber cambiado de decisión de no haber utilizado `detach`:
 
-![<img src="https://imgshare.io/images/2021/05/27/a5.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a5.png)
+![<img src="https://imgshare.io/images/2021/05/27/a5.png" alt="" width="350px" height="120px"/>](https://imgshare.io/images/2021/05/27/a5.png)
 
 <a name="exec">Utilizo</a> el contenedor para empezar a trabajar con él mediante el comando `docker exec -it <ID> bash`:
 
-![<img src="https://imgshare.io/images/2021/05/27/a6.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a6.png)
+![<img src="https://imgshare.io/images/2021/05/27/a6.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/a6.png)
 
 Puede apreciarse que he iniciado una sesión Bash, y que puedo listar el directorio root ('\\') del contenedor "conMysql".
 
 
 Ahora inicio mysql server y creo una base de datos `pruebaLeandro` a través de `mysql -u root -p`:
 
-![<img src="https://imgshare.io/images/2021/05/27/a7.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a7.png)
+![<img src="https://imgshare.io/images/2021/05/27/a7.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/a7.png)
 
 Cuando cierro `docker stop <ID>` éste contenedor. Los datos se perderán. Por lo que tendré que crear un volumen persistente:
 
-![<img src="https://imgshare.io/images/2021/05/27/a8.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a8.png)
+![<img src="https://imgshare.io/images/2021/05/27/a8.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/a8.png)
 
 Compruebo que los datos se pierden:
 
-![<img src="https://imgshare.io/images/2021/05/27/a9.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/a9.png)
+![<img src="https://imgshare.io/images/2021/05/27/a9.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/a9.png)
 
 Ya había un volumen local, así que he tenido que borrar el volumen mediante `docker volume prune` .
 
 Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . Elimino el contenedor y lo vuelvo a crear con éste nuevo volumen:
 
-![<img src="https://imgshare.io/images/2021/05/27/b2.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/b2.png)
+![<img src="https://imgshare.io/images/2021/05/27/b2.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/b2.png)
 
-![<img src="https://imgshare.io/images/2021/05/27/b4.png" alt="" width="350px" height="350px"/>](https://imgshare.io/images/2021/05/27/b4.png)
+![<img src="https://imgshare.io/images/2021/05/27/b4.png" alt="" width="700px" height="400px"/>](https://imgshare.io/images/2021/05/27/b4.png)
 
 Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al cerrarlo.
