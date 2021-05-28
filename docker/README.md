@@ -149,7 +149,7 @@ docker run -d -v <nombreVolumen>:<contenedorDirectorio>
 
 `sudo su` para utilizar la terminal con el usuario root.
 
-Primero utilizo `docker ps` para comprobar que no tengo ninguna imagen o contenedor.
+Primero utilizo `docker ps -a` para comprobar que no tengo ninguna imagen o contenedor.
 
 ![](https://imgshare.io/images/2021/05/27/a160d54014e2d5bc84.png)
 
