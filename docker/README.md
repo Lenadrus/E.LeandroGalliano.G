@@ -121,4 +121,4 @@ Ejemplo de uuso del parámetro *-e* : `-e MYSQL_ROOT_PASSWORD=Abcd1234.`
 #
 
 
-### <a name="usoDock">Utilizando para pruebas Docker de ejemplo.</a>
+### <a name="usoDock">Utilizando Docker para pruebas de ejemplo.</a>
