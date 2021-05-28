@@ -209,7 +209,7 @@ Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al 
 
 ### <a name="dock">dockerfile</a>
 
-<span style="color:red">Me he valido de ayuda de la [documentación oficial](https://docs.docker.com/engine/reference/builder/) para redactar éste texto.</span>
+> Me he valido de ayuda de la [documentación oficial](https://docs.docker.com/engine/reference/builder/) para redactar éste texto.
 
 Docker es capaz de countruír imágenes automáticamente mediante la lectura de instrucciones de un archivo de docker; un *dockerfile*.
 
