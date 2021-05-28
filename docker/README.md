@@ -170,3 +170,7 @@ Ahora ya puedo ejecutar `docker run --name conMysql -e MYSQL_ROOT_PASSWORD=Abcd1
 Compruebo que el contenedor está en ejecución `docker ps -a`, a pesar de haber cerrado la terminal tras haber cambiado de decisión de no haber utilizado `detach`:
 
 ![](https://imgshare.io/images/2021/05/27/a5.png)
+
+<a name="exec">Utilizo</a> el contenedor para empezar a trabajar con él mediant el comando `docker exec -it <ID> bash`:
+
+![](https://imgshare.io/images/2021/05/27/a6.png)
