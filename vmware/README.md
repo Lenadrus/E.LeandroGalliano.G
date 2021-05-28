@@ -1,1 +1,1 @@
-**Instalación de la VMware en mi máquina Ubuntu Studio.**
+**Instalación de VMware Work Station en mi máquina Ubuntu Studio.**
