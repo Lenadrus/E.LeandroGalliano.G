@@ -202,4 +202,7 @@ Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . E
 
 ![](https://imgshare.io/images/2021/05/27/b4.png)
 
+docker run -d -v <paraMysql>:<ID_contenedor>
+
+
 Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al cerrarlo.
