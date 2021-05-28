@@ -121,7 +121,7 @@ docker run -d \
 <imagen>:<tag>
 ```
 
-La barra invertida '\' me sirve para llevar el prompt de la terminal a un nuevo salto de línea sin perder la entrada de parámetros.
+La barra invertida '\\' me sirve para llevar el prompt de la terminal a un nuevo salto de línea sin perder la entrada de parámetros.
 
 #
 Ejemplo de uso del parámetro *-p* : `-p 8080:8080`
