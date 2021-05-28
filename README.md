@@ -8,6 +8,10 @@
 
 * [Scripts de SQL para SSMS (de clase)](https://github.com/Lenadrus/E.LeandroGalliano.G/blob/main/scriptsSQL/README.md)
 
+* [Trabajo de SSMS](./ssms/README.md)
+
 * [Docker](./docker/README.md)
 
 * [VMware WorkStation](./vmware/README.md)
+
+* [Visual Studio](./vstudio/README.md)
