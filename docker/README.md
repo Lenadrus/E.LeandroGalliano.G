@@ -146,3 +146,13 @@ docker run -d -v <nombreVolumen>:<contenedorDirectorio>
 `<contenedorDirectorio>` es el directorio del contenedor al que deseo mapear el nuevo volumen.
 
 ### <a name="usoDock">Utilizando Docker para pruebas de ejemplo.</a>
+
+`sudo su` para utilizar la terminal con el usuario root.
+
+Primero utilizo `docker ps` para comprobar que no tengo ninguna imagen o contenedor.
+
+![](https://imgshare.io/images/2021/05/27/a1.png)
+
+Busco imágenes relacionadas con "mysql" con el comando `docker search mysql`.
+
+![](https://imgshare.io/images/2021/05/27/a2.png)
