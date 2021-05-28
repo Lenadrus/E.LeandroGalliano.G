@@ -13,9 +13,9 @@ Aquí dispongo los apuntes de Docker de clase.
 * [Volumen persistente. ¡Cuidado al detener una imagen!](#persistente)
 
 * [Usando Docker](#usoDock)
-  * Descargando imagen
-  * Creando nuevo contenedor
-  * Utilizando contenedor (+ creación del volumen persistente)
+  * Descaro una imagen
+  * Creo un nuevo contenedor
+  * Utilizo un contenedor (+ creación del volumen persistente)
 
 #
 ### <a name="nocion">Sobre Docker</a>
