@@ -143,6 +143,6 @@ Con el comando `docker volume ...` he creado el volumen.
 docker run -d -v <nombreVolumen>:<contenedorDirectorio>
 ```
 
-<contenedorDirectorio> es el directorio del contenedor al que deseo mapear el nuevo volumen.
+`<contenedorDirectorio>` es el directorio del contenedor al que deseo mapear el nuevo volumen.
 
 ### <a name="usoDock">Utilizando Docker para pruebas de ejemplo.</a>
