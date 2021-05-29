@@ -51,7 +51,7 @@ Entonces, probar a ejecutar Workstation desde la GUI:
 
 Ya puedo trabajar en VMware Workstation Pro 15.0 desde GNU/Linux.
 
-Para desinstalarla de Ubuntu:
+**Para desinstalarla de Ubuntu:**
 
 Ejecutar terminal como root `sudo su` .
 
