@@ -265,3 +265,89 @@ Como ejemplo, voy a crear una imágen ubuntu con una simple instrucción en la q
 
 ### <a name="mul">docker-compose</a>
 
+
+Creo la carpeta en la que guardaré el archivo de docker-compose. Dentro de ésta carpeta creo el archivo `docker-compose.yml`.
+
+El procedimiento es parecido al de dockerfile.
+
+![](https://imgshare.io/images/2021/05/29/e1.png)
+
+Tengo que crear un archivo de nombre "app.py" en el que inserto las líneas:
+
+```
+import time
+
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return 'Hello World! I have been seen {} times.\n'.format(count)
+
+
+```
+
+![](https://imgshare.io/images/2021/05/29/e2.png)
+
+Creo un docker file (todo es en la misma carpeta), con el contenido:
+
+```
+# syntax=docker/dockerfile:1
+FROM python:3.7-alpine
+WORKDIR /code
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD ["flask", "run"]
+
+```
+
+![](https://imgshare.io/images/2021/05/29/e3.png)
+
+Ahora inserto dentro del archivo `docker-compose.yml`, el siguiente contenido (es un contenido de ejemplo):
+
+```
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
+
+```
+
+Pero, en mi práctico, yo he insertado el contenido de clase:
+
+![](https://imgshare.io/images/2021/05/29/e4.png)
+
+Ahora ejecuto el comando (dentro de esa misma carpeta con todos esos archivos) `docker-compose up`
+para iniciar el proceso de docker-compose de lo que tenemos configurado en ese directorio.
+
+Si se me pide instalar docker-compose, procedo a instalarlo: `apt install docker-compose` (debo ser `root`).
+
+![](https://imgshare.io/images/2021/05/29/e5.png)
+
+Ejecuto `docker-compose up`:
+
+![](https://imgshare.io/images/2021/05/29/e6.png)
