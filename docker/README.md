@@ -16,6 +16,7 @@ Aquí dispongo los apuntes de Docker de clase y trabajo propio.
   * Descargo una imagen
   * Creo un nuevo contenedor
   * Utilizo un contenedor (+ creación del volumen persistente)
+  * Red
 
 * [dockerfile](#dock)
 
@@ -76,7 +77,7 @@ Los contenedores se identifican por un identificador "bash".
 <a name="instalar"></a>
 ### Instalación de Docker en Ubuntu
 
-Ésta información la he obtenido con ayuda de la [documentación de Docker](https://docs.docker.com/engine/install/ubuntu/).
+> Ésta información la he obtenido con ayuda de la [documentación de Docker](https://docs.docker.com/engine/install/ubuntu/).
 
 Abrir la terminal de Ubuntu (atajo del teclado: CTRL+ALT+T), y seguir los siguientes pasos:
 
@@ -207,18 +208,50 @@ Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . E
 
 Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al cerrarlo.
 
+**Creo una red **
+
 ### <a name="dock">dockerfile</a>
 
 > Me he valido de ayuda de la [documentación oficial](https://docs.docker.com/engine/reference/builder/) para redactar éste texto.
 
-Docker es capaz de countruír imágenes automáticamente mediante la lectura de instrucciones de un archivo de docker; un *dockerfile*.
+Docker es capaz de construír imágenes automáticamente mediante la lectura de instrucciones de un archivo de docker; un *dockerfile*.
 
 *dockerfile* es un documento de texto en el que se definen todos los comandos que puede utilizar el usuario para ensamblar una imágen.
 
-*dockerfile* se utiliza mediante un comando especial reservado para interactuar con él: `docker build [CONTEXTO]` . Donde "`[CONTEXTO]`"
+*dockerfile* se utiliza mediante un comando especial reservado para interactuar con él: `docker build [CONTEXTO]`. Donde "`[CONTEXTO]`"
 es el conjunto de archivos en una ruta en concreto. Con `docker build` construímos una imágen localizada en un archivo docker.
 
+El `contexto` puede ser la ruta actual '.', una ruta relativa o un archivo.
 
+El archivo de docker, tiene una sintaxis determinada para ejecutar la lectura de instrucciones:
+
+```
+# Comentario
+
+INSTRUCCION argumentos
+
+```
+
+Las instrucciones no son case-sensitive. Un `dockerfile` debe comenzar siempre por la instruccion `FROM`, que específica la imagen
+de la que estás construyendo.
+
+Como ejemplo, voy a crear una imágen ubuntu con una simple instrucción en la que ejecutaré el comando "apt-get update":
+
+ - Creo una carpeta "docker" dentro de la que crearé los directorios para mis `dockerfiles`:
+
+	![](https://imgshare.io/images/2021/05/28/c0.png)
+
+ 	- Cualquier archivo (con o sin exstensión) se crea con el comando `> [NOMBRE]` donde "[NOMBRE]" es el nombre que queremos dar.
+	  `>` es el equivalente a `echo > nombreArchivo` en la CMD de Windows.
+
+ - Edito el archivo de docker con `nano`:
+
+	![](https://imgshare.io/images/2021/05/28/c1.png)
+
+ - Ejecuto `docker build -t <nombre> <directorioDockerfile>` para construír la imagen:
+
+	![](https://imgshare.io/images/2021/05/28/c2.png)
 
 
 ### <a name="mul">docker-compose</a>
+
