@@ -49,3 +49,4 @@ Entonces, probar a ejecutar Workstation desde la GUI:
 
 ![](https://imgshare.io/images/2021/05/29/a4.png)
 
+Ya puedo trabajar en VMware Workstation Pro 15.0 desde GNU/Linux.
