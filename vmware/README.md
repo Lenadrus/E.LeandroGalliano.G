@@ -45,6 +45,8 @@ sudo make
 sudo make install
 ```
 
+Como los módulos son de una versión distinta, he de descargar la versión del bundle compatible con esos módulos...
+
 Entonces, probar a ejecutar Workstation desde la GUI:
 
 ![](https://imgshare.io/images/2021/05/29/a4.png)
