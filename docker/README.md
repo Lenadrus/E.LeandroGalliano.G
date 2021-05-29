@@ -208,7 +208,17 @@ Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . E
 
 Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al cerrarlo.
 
-**Creo una red **
+**<a name="red">Creo una red</a>**
+
+Para crear una red, utilizo: `docker network create <nombreRed> <opciones>`
+
+Para ésta práctica me valgo de una red local `docker network ls` .
+
+Creo los contenedores *ubuntu* y *debian* en la red *host* :
+
+![](https://imgshare.io/images/2021/05/29/d1.png)
+
+![](https://imgshare.io/images/2021/05/29/d2.png)
 
 ### <a name="dock">dockerfile</a>
 
