@@ -22,9 +22,9 @@ En el caso de que se obtenga éste error, hay que instalar los módulos [manualm
 
 ```
 cd /usr/lib/vmware/modules/source
-wget https://github.com/mkubecek/vmware-host-modules/archive/player-15.5.1.tar.gz
-tar -xzf  player-15.5.1.tar.gz
-cd vmware-host-modules-player-15.5.1
+wget https://github.com/mkubecek/vmware-host-modules/archive/player-15tar.gz
+tar -xzf  player-15.tar.gz
+cd vmware-host-modules-player-15
 cd  vmmon-only/
 make
 cd ../vmnet-only/
@@ -39,8 +39,8 @@ depmod -a
 
 ```
 wget https://github.com/mkubecek/vmware-host-modules/archive/workstation-15.5.1.tar.gz
-tar -xzf workstation-15.5.1.tar.gz
-cd vmware-host-modules-workstation-15.5.1
+tar -xzf workstation-15.0.tar.gz
+cd vmware-host-modules-workstation-15.0.0
 sudo make
 sudo make install
 ```
@@ -50,3 +50,9 @@ Entonces, probar a ejecutar Workstation desde la GUI:
 ![](https://imgshare.io/images/2021/05/29/a4.png)
 
 Ya puedo trabajar en VMware Workstation Pro 15.0 desde GNU/Linux.
+
+Para desinstalarla de Ubuntu:
+
+Ejecutar terminal como root `sudo su` .
+
+Ejecutar el comando: `vmware-installer -u vmware-workstation`
