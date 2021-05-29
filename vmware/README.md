@@ -1,6 +1,8 @@
 **Instalación de VMware Work Station en mi máquina Ubuntu**
 
-***[Desinstalación desde Ubuntu...](#desi)***
+* [Instalación de los módulos](#modu)
+
+* ***[Desinstalación desde Ubuntu...](#desi)***
 
 Descargo el archivo Bundle de VMware Workstation 15 para Linux
 desde [my.vmware.com](https://my.vmware.com/web/vmware/downloads/info/slug/desktop_end_user_computing/vmware_workstation_pro/15_0)
@@ -19,6 +21,8 @@ Tras seguir el gestor de instalación, debería ser capaz de ejecutar la Worksta
 *Importante instalar lo necesario para ejecutar Workstation apropiadamente...*
 
 ![](https://imgshare.io/images/2021/05/29/a3.png)
+
+### <a name="modu">Módulos</a>
 
 En el caso de que se obtenga éste error, hay que instalar los módulos [manualmente](https://dm0s.wordpress.com/2020/05/05/vmware-kernel-modules-for-linux/):
 
