@@ -16,7 +16,7 @@ Aquí dispongo los apuntes de Docker de clase y trabajo propio.
   * Descargo una imagen
   * Creo un nuevo contenedor
   * Utilizo un contenedor (+ creación del volumen persistente)
-  * Red
+  * [Red](#red)
 
 * [dockerfile](#dock)
 
@@ -208,7 +208,7 @@ Ahora creo un nuevo volumen mediante `docker volume create <nombreVolument>` . E
 
 Ahora, ya podría ejecutar comandos en el contenedor, sin perder el progreso al cerrarlo.
 
-**<a name="red">Creo una red</a>**
+**<a name="red">Red</a>**
 
 Para crear una red, utilizo: `docker network create <nombreRed> <opciones>`
 
