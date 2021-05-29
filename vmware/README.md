@@ -1,6 +1,6 @@
 **Instalación de VMware Work Station en mi máquina Ubuntu**
 
-* [Instalación de los módulos](#modu)
+* ***[Instalación de los módulos](#modu)***
 
 * ***[Desinstalación desde Ubuntu...](#desi)***
 
