@@ -1,5 +1,7 @@
 **Instalación de VMware Work Station en mi máquina Ubuntu**
 
+***[Desinstalación desde Ubuntu...](#desi)***
+
 Descargo el archivo Bundle de VMware Workstation 15 para Linux
 desde [my.vmware.com](https://my.vmware.com/web/vmware/downloads/info/slug/desktop_end_user_computing/vmware_workstation_pro/15_0)
 
@@ -53,7 +55,7 @@ Entonces, probar a ejecutar Workstation desde la GUI:
 
 Ya puedo trabajar en VMware Workstation Pro 15.0 desde GNU/Linux.
 
-**Para desinstalarla de Ubuntu:**
+**<a name="desi">Para desinstalarla de Ubuntu:</a>**
 
 Ejecutar terminal como root `sudo su` .
 
