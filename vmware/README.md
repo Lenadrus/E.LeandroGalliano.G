@@ -45,7 +45,7 @@ sudo make
 sudo make install
 ```
 
-Como los módulos son de una versión distinta, he de descargar la versión del bundle compatible con esos módulos...
+Como los módulos son de una versión distinta, he de descargar la versión del bundle [compatible](https://my.vmware.com/group/vmware/downloads/details?downloadGroup=WKST-1551-LX&productId=799&rPId=55768) con esos módulos...
 
 Entonces, probar a ejecutar Workstation desde la GUI:
 
