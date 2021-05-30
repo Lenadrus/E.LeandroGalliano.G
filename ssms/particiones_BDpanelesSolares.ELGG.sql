@@ -2,7 +2,6 @@
 USE PanelesSolares_ELGG;
 GO
 --Para ésta partición de tabla, voy a usar únicamente 2 filegroups.
---Escojeré una tabla relativamente pesada.
 ALTER DATABASE PanelesSolares_ELGG
 ADD FILEGROUP grupoArchivos1;
 GO
