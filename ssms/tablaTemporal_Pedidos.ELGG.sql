@@ -1,4 +1,6 @@
 -- Por E. Leandro Galliano G.
+USE PanelesSolares_ELGG;
+GO
 CREATE TABLE Pedidos (
 ID_pedido INT PRIMARY KEY NOT NULL, -- Ésta clave es un anzuelo para que pueda crearse la tabla.
 ID_cliente NVARCHAR(9) FOREIGN KEY REFERENCES Cliente(DNI_cliente) NOT NULL,

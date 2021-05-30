@@ -1,4 +1,6 @@
 -- Por E. Leandro Galliano G.
+USE PanelesSolares_ELGG;
+GO
 CREATE OR ALTER TRIGGER denominacionPanel ON PanelSolar
 AFTER INSERT AS IF('%' NOT IN (
 SELECT DISTINCT(tipo_panel)
