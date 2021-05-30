@@ -1,18 +1,18 @@
-## Sobre AdventureWorks2017
+## Sobre la base de datos de mi proyecto.
 
-* [Particiones (table partitions)]()
+* [Partición (table partitions)](./particiones_BDpanelesSolares.ELGG.sql.sql)
 
-* [Tablas Temporales]()
+* [Tabla Temporal](./tablaTemporal_Pedidos.ELGG.sql)
 
-* [Tablas en memoria]()
+* [Tabla en memoria]()
 
-* [Triggers]()
+* [Trigger](./triggerPanelSolar.ELGG.sql)
 
 * [Encriptación de columnas]()
 
 * [Copias de seguridad]()
 
-* [Dynamic Data Masking]()
+* [Dynamic Data Masking](./DDM_PanelesSolares_ELGG.sql)
 
 * [Row Level Security]()
 #
