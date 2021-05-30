@@ -8,7 +8,7 @@
 
 * [Trigger](./triggerPanelSolar.ELGG.sql)
 
-* [Encriptación de columnas]()
+* [Encriptación de columnas](./encriptarColumnaPanelesSolares_ELGG.sql)
 
 * [Copias de seguridad]()
 

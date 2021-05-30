@@ -34,4 +34,6 @@ OPEN SYMMETRIC KEY clavePlaca
 GO 
 INSERT INTO placaSolar(ID_placa, tipo_placa, precioPlaca)
 VALUES (1001, 'silicio', 150);
+GO
 SELECT * FROM placaSolar;
+Go
