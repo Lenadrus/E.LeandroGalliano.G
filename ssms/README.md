@@ -10,9 +10,9 @@
 
 * [Encriptación de columnas](./encriptarColumnaPanelesSolares_ELGG.sql)
 
-* [Copias de seguridad]()
+* [Copias de seguridad](./backupPanelesSolares_ELGG.sql)
 
 * [Dynamic Data Masking](./DDM_PanelesSolares_ELGG.sql)
 
-* [Row Level Security]()
+* [Row Level Security](./RLS_PanelesSolares_ELGG.sql)
 #
