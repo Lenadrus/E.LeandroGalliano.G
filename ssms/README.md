@@ -12,7 +12,7 @@
 
 #### Seguridad
 
-* [Encriptación de columnas](./encriptarColumnaPanelesSolares_ELGG.sql)
+* [Encriptación de columnas](./encriptacionBD.sql)
 
 * [Copias de seguridad](./backupPanelesSolares_ELGG.sql)
 
