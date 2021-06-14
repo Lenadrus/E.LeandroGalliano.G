@@ -8,7 +8,7 @@ ALTER DATABASE CURRENT REMOVE FILEGROUP optimizados_fg;
 ALTER DATABASE CURRENT ADD FILEGROUP optimizados_fg CONTAINS MEMORY_OPTIMIZED_DATA;
 -- Agregar un archivo a dicho FG:
 ALTER DATABASE CURRENT ADD FILE (
-NAME='optimizar', FILENAME='C:\optimizacion\optimizar.ndf')
+NAME='optimizar', FILENAME='C:\data\optimizar.ndf')
 TO FILEGROUP optimizados_fg;
 GO
 /*

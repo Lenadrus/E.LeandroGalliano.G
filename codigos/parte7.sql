@@ -1,6 +1,6 @@
 USE PanelesSolares_ELGG;
 Go
-CREATE MASTER KEY ENCRYPTED BY PASSWORD = 'Abcd1234.';
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Abcd1234.';
 GO
 CREATE CERTIFICATE cert_encriptar_columna WITH SUBJECT = 'Para encriptación de columnas.';
 GO

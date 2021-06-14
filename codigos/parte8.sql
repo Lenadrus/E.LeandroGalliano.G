@@ -1,9 +1,6 @@
 USE PanelesSolares_ELGG;
 GO
 --
-DROP CERTIFICATE certPaneles_server;DROP MASTER KEY;
-GO
---
 CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Abcd1234.';
 GO
 CREATE CERTIFICATE certPaneles_server WITH SUBJECT = 'Para encriptar la base de datos';
