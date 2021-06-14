@@ -29,3 +29,6 @@ ENCRYPTION_TYPE = DETERMINISTIC,
 ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
 COLUMN_ENCRYPTION_KEY = ae_colEncr);
 GO
+/*
+Obtengo el error "Msg 206" acerca de "operand type clash" al tratar de modificar.
+*/
