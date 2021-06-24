@@ -1,4 +1,4 @@
-﻿# E.LeandroGalliano.G
+# Base de Datos
 
 ## Trabajos de Base de Datos para el módulo de Sistemas Gestores de Bases de Datos
 
